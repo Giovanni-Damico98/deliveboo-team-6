@@ -10,5 +10,12 @@ class Restaurant extends Model
     // Specifica la tabella associata al Model
     protected $table = 'restaurants';
 
-        
+    // Fillable
+    protected $fillable = [
+        'name',
+        'address',
+        'vat_number',
+        'image',
+        'user_id',
+    ];
 }

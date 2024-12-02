@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId("restaurant_id")->constrained()->after("id")->onDelete('cascade');
             $table->boolean('visible');
             $table->text('image')->nullable();
+            $table->timestamps();
         });
     }
 

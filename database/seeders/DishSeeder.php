@@ -44,6 +44,5 @@ class DishSeeder extends Seeder
         $newDish->save();
     }
 
-
     }
 }

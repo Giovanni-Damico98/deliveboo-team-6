@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
 
         Schema::create('dish_order', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('dish_id')->references('id')->on('dishes');
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->bigInteger('quantity');
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('dish_id')->constrained();
+            $table->primary(['dish_id', 'order_id']);
         });
 
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

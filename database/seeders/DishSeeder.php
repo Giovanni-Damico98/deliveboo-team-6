@@ -14,6 +14,5 @@ class DishSeeder extends Seeder
     {
         //
 
-
     }
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
 
         Schema::create('category_restaurant', function (Blueprint $table) {
-            $table->foreignId('categories_id')->constrained();
-            $table->foreignId('restaurant_id')->constrained();
+            $table->foreignId('categories_id')->constrained()->onDelete('cascade');
+            $table->foreignId('restaurant_id')->constrained()->onDelete('cascade');
             $table->primary(['categories_id', 'restaurant_id']);
         });
 

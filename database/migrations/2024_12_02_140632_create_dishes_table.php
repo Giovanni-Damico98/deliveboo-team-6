@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('name', 255);
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
-            $table->foreignId("restaurant_id")->constrained()->after("id");
+            $table->foreignId("restaurant_id")->constrained()->after("id")->onDelete('cascade');
             $table->boolean('visible');
             $table->text('image')->nullable();
+            $table->timestamps();
         });
     }
 

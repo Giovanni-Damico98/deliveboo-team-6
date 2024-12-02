@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("restaurant_id")->constrained()->after("id");
+            $table->foreignId("restaurant_id")->constrained()->after("id")->onDelete('cascade');
             $table->decimal('total_price', 8, 2);
             $table->string('firstname', 255);
             $table->string('lastname', 255);
             $table->string('address', 255);
             $table->string('phone_number', 255);
             $table->text('note');
+            $table->timestamps();
         });
     }
 

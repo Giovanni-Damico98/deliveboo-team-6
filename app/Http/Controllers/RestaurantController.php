@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Restaurant;
+use App\Models\User;
 
 class RestaurantController extends Controller
 {
@@ -20,6 +22,8 @@ class RestaurantController extends Controller
     public function create()
     {
         //
+        // $users = User::all();
+        // return view('', compact('users'));
     }
 
     /**
@@ -28,6 +32,19 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         //
+        $formData = $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'vat_number' => 'required|bigInteger',
+            'image' => 'required|url:http,https',
+            'user_id' => 'required|string',
+        ]);
+
+        $dish = New Restaurant();
+
+        $dish->fill($formData);
+        $dish->user_id = $formData['user_id'];
+        $dish->save();
     }
 
     /**

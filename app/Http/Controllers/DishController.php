@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Restaurant;
+use App\Models\Dish;
 
 class DishController extends Controller
 {
@@ -20,6 +22,8 @@ class DishController extends Controller
     public function create()
     {
         //
+        $restaurants = Restaurant::all();
+        return view('', compact('restaurants'));
     }
 
     /**
@@ -31,7 +35,18 @@ class DishController extends Controller
         $formData = $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
+            'price' => 'required|decimal',
+            'restaurant_id' => 'required|string',
+            'visible' => 'required|boolean',
+            'image' => 'nullable|url:http,https',
         ]);
+
+        $dish = New Dish();
+
+        $dish->fill($formData);
+        $dish->restaurant_id = $formData['restaurant_id'];
+        $dish->save();
+
     }
 
     /**

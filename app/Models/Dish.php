@@ -19,4 +19,7 @@ class Dish extends Model
         'visible',
         'image',
     ];
+    public function restaurant(){
+        return $this->belongsTo(Restaurant::class);
+    }
 }

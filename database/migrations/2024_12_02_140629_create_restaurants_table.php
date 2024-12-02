@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('vat_number');
             $table->text('image');
             $table->foreignId("user_id")->constrained()->after("id");
+            $table->timestamps();
         });
     }
 

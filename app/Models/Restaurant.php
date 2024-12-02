@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Restaurant extends Model
 {
@@ -17,5 +18,16 @@ class Restaurant extends Model
         'vat_number',
         'image',
         'user_id',
+        'update_at',
+        'created_at',
     ];
+
+    public function dishes(){
+        return $this->hasMany(Dish::class);
+    }
+
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

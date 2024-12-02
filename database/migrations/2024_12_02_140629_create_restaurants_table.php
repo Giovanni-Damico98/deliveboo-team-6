@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('restaurants', function (Blueprint $table) {
@@ -17,7 +15,7 @@ return new class extends Migration
             $table->string('address', 255);
             $table->bigInteger('vat_number');
             $table->text('image');
-            $table->bigInteger('user_id');
+            $table->foreignId("user_id")->constrained()->after("id");
         });
     }
 

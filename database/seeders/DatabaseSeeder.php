@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Restaurant;
 use App\Models\Dish;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
+            UserSeeder::class,
             RestaurantSeeder::class,
             DishSeeder::class,
         ]);

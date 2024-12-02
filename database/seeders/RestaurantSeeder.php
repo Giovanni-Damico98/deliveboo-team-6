@@ -15,20 +15,23 @@ class RestaurantSeeder extends Seeder
     {
         //
         $restaurants = [
-          $name = "Dar Romano",
-          $address = "Via le mani dal naso 1",
-          $vat_number = 123567345612,
-          $image = "example.com",
-          $user_id = 1,
+        [
+            "name" => "Dar Romano",
+            "address" => "Via le mani dal naso 1",
+            "vat_number" => 123567345612,
+            "image" => "example.com",
+            "user_id" => 1,
+        ]
+
         ];
 
         foreach ($restaurants as $restaurant){
             $newRestaurant = new Restaurant();
-            $newRestaurant->name = $name;
-            $newRestaurant->address = $address;
-            $newRestaurant->vat_number = $vat_number;
-            $newRestaurant->image = $image;
-            $newRestaurant->user_id = $user_id;
+            $newRestaurant->name = $restaurant["name"];
+            $newRestaurant->address = $restaurant["address"];
+            $newRestaurant->vat_number = $restaurant["vat_number"];
+            $newRestaurant->image = $restaurant["image"];
+            $newRestaurant->user_id = $restaurant["user_id"];
             $newRestaurant->save();
         }
     }

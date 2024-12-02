@@ -22,8 +22,8 @@ class DishController extends Controller
     public function create()
     {
         //
-        $restaurants = Restaurant::all();
-        return view('', compact('restaurants'));
+        // $restaurants = Restaurant::all();
+        // return view('', compact('restaurants'));
     }
 
     /**

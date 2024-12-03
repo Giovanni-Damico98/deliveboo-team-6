@@ -21,18 +21,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [RestaurantController::class, 'index'])->name('admin.dashboard');
+Route::prefix('/admin')->group(function () {
+    Route::get('/dashboard', [RestaurantController::class, 'index'])->name('dashboard');
 });
 
-Route::prefix("/admin")->name("admin.")->group(function(){
-    Route::get("/dishes" , [DishController::class , "index"])->name("dishes.index");
+Route::prefix("/admin")->name("admin.")->group(function () {
+    Route::get("/dishes", [DishController::class, "index"])->name("dishes.index");
 
-    Route::get("/dishes/show/{dish}" , [DishController::class, "show"])->name("dishes.show");
+    Route::get("/dishes/show/{dish}", [DishController::class, "show"])->name("dishes.show");
 
-
-
-
-    Route::delete("/dishes/delete/{dish}" , [DishController::class , "destroy"])->name("dishes.delete");
+    Route::delete("/dishes/delete/{dish}", [DishController::class, "destroy"])->name("dishes.delete");
 });
-

@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin dashboard</title>
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -28,12 +30,12 @@
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
-                        <li class="navitem">
+                        {{-- <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.orders.index') }}">Ordini</a>
                         </li>
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.statistics') }}">Statistiche</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">

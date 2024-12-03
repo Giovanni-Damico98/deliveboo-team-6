@@ -22,6 +22,14 @@ class DishController extends Controller
     {
         //
         $dishes = Dish::all();
+
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+        if(!$restaurant) {
+            return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
+        }
+
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+
         return view("admin.dishes.index", compact("dishes"));
     }
 
@@ -81,6 +89,8 @@ class DishController extends Controller
     public function edit(string $id)
     {
         //
+        $dish = Dish::findOrFail($id);
+        return view("admin.dishes.edit", compact("dish"));
     }
 
     /**
@@ -89,6 +99,18 @@ class DishController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $formData = $request->validate([
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+            'price' => 'required|decimal:2',
+            'visible' => 'required|boolean',
+            'image' => 'nullable|url:http,https',
+        ]);
+
+        $dish = Dish::findOrFail($id);
+        $dish->update($formData);
+
+        return redirect()->route('admin.dishes.index')->with('message', 'Piatto aggiornato con successo!');
     }
 
     /**

@@ -23,7 +23,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
@@ -37,12 +37,26 @@
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        {{-- Main content --}}
+
+        <main class="py-4">
+            <div class="container">
+                @yield('content')
+            </div>
+        </main>
     </div>
 </body>
 

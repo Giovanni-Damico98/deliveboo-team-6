@@ -31,8 +31,8 @@ class DishController extends Controller
     public function create()
     {
         //
-        $dishes = Dish::all();
-        return view('admin.dishes.create', compact('dishes'));
+        $restaurants = Restaurant::all();
+        return view('admin.dishes.create', compact('restaurants'));
     }
 
     /**
@@ -42,18 +42,21 @@ class DishController extends Controller
     {
         //
         $formData = $request->validate([
+            'restaurant_id' => 'required|string',
             'name' => 'required|string',
             'description' => 'nullable|string',
             'price' => 'required|decimal:2',
+            'visible' => 'nullable|boolean',
             'image' => 'nullable|url:http,https',
         ]);
 
         $dish = new Dish();
 
         $dish->fill($formData);
+        $dish->restaurant_id = $formData['restaurant_id'];
         $dish->save();
 
-        return redirect()->route("admin.dishes.show", $dish->id);
+        return redirect()->route("admin.dishes.index");
     }
 
     /**

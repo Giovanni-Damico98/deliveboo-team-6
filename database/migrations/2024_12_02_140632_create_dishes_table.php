@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->foreignId("restaurant_id")->constrained()->after("id")->onDelete('cascade');
-            $table->boolean('visible');
+            $table->boolean('visible')->nullable();
             $table->text('image')->nullable();
             $table->timestamps();
         });

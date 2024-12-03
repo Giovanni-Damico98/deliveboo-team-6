@@ -20,10 +20,6 @@
                     <label for="price" class="form-label">Price</label>
                     <input type="number" name="price" class="form-control" id="price" min="0" value="{{old('price', '')}}">
                 </div>
-                <div class="col-4 mb-3">
-                    <label for="restaurant_id" class="form-label">Restaurant</label>
-                    <input type="input" name="restaurant_id" class="form-control" id="restaurant_id" value="{{old('restaurant_id', '')}}">
-                </div>
                 <div class="col mb-3">
                     <label for="image" class="form-label">Image</label>
                     <input type="url" name="image" class="form-control" id="image" value="{{old('image', '')}}">

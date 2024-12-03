@@ -3,9 +3,9 @@
 @section("content")
 
 <div class="container mt-5">
-    {{-- <a href="{{ route("admin.dishes.create") }}" class="btn btn-primary m-3 d-flex justify-content-center align-content-center">
+    <a href="{{ route("admin.dishes.create") }}" class="btn btn-primary m-3 d-flex justify-content-center align-content-center">
         Crea un nuovo piatto
-    </a> --}}
+    </a>
     <div class="row mb-2 g-3">
         @forelse ($dishes as $index => $dish )
             <div class="col-md-4">

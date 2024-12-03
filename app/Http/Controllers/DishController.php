@@ -22,6 +22,15 @@ class DishController extends Controller
     {
         //
         $dishes = Dish::all();
+
+        // Todo: first()-> recupera il primo record che soddisfa la condizione
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+        if(!$restaurant) {
+            return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
+        }
+
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+
         return view("admin.dishes.index", compact("dishes"));
     }
 
@@ -42,25 +51,36 @@ class DishController extends Controller
     {
         //
         $formData = $request->validate([
+            // 'restaurant_id' => 'required|string',
             'name' => 'required|string',
             'description' => 'nullable|string',
             'price' => 'required|decimal:2',
+            'visible' => 'required|boolean',
             'image' => 'nullable|url:http,https',
         ]);
+
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+        if(!$restaurant) {
+            return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
+        }
 
         $dish = new Dish();
 
         $dish->fill($formData);
+        $dish->restaurant_id = $restaurant->id;
+        // $dish->restaurant_id = $formData['restaurant_id'];
         $dish->save();
+
+        return redirect()->route("admin.dishes.index");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Dish $dish)
     {
         //
-        $dish = Dish::findOrFail($id);
+        // $dish = Dish::findOrFail($id);
         return view("admin.dishes.show", compact("dish"));
     }
 
@@ -70,6 +90,8 @@ class DishController extends Controller
     public function edit(string $id)
     {
         //
+        $dish = Dish::findOrFail($id);
+        return view("admin.dishes.edit", compact("dish"));
     }
 
     /**
@@ -78,17 +100,29 @@ class DishController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $formData = $request->validate([
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+            'price' => 'required|decimal:2',
+            'visible' => 'required|boolean',
+            'image' => 'nullable|url:http,https',
+        ]);
+
+        $dish = Dish::findOrFail($id);
+        $dish->update($formData);
+
+        return redirect()->route('admin.dishes.index')->with('message', 'Piatto aggiornato con successo!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Dish $dish)
     {
         //
-        $dish = Dish::findOrFail($id);
+        // $dish = Dish::findOrFail($id);
         $dish->delete();
 
-        return redirect()->route("admin.dishes.delete");
+        return redirect()->route("admin.dishes.index");
     }
 }

@@ -14,23 +14,20 @@
 <body>
     <div id="admin-dashboard">
         {{-- Navbar --}}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand"  href="{{ route('dashboard') }}">
-                    Admin dashboard
+                <a class="navbar-brand" href="{{ route('dashboard') }}">
+                    Dashboard
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-label="toggle navigation"
-                    aria-expanded="false" aria-controls="navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
-                       <li class="navitem">
+                        <li class="navitem">
                             <a class="nav-link" href="#{{-- {{ route('admin.orders.index') }} --}}">Ordini</a>
                         </li>
                         <li class="navitem">

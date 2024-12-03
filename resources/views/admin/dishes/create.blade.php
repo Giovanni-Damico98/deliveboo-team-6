@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.admin")
 @section("content")
 <main class="container">
     <div class="card-title mb-5">
@@ -13,12 +13,12 @@
                     <input type="text" name="name" class="form-control" id="name" value="{{old('name', '')}}" placeholder="name">
                 </div>
                 <div class="col-8 mb-3">
-                    <label for="description" class="form-label">Image</label>
-                    <input type="url" name="description" class="form-control" id="description" value="{{old('description', '')}}">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="text" name="description" class="form-control" id="description" value="{{old('description', '')}}"></textarea>
                 </div>
                 <div class="col-2 mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" id="price" min="0" value="{{old('price', '')}}">
+                    <input type="number" name="price" class="form-control" id="price" min="0" max="999" value="{{old('price', '')}}">
                 </div>
                 <div class="col mb-3">
                     <label for="image" class="form-label">Image</label>

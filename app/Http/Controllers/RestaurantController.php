@@ -13,7 +13,12 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+
+        if (!$restaurant) {
+            return redirect()->route('restaurant.create')->with('message', 'Per favore crea prima il tuo ristorante');
+        }
+        return view('admin.dashboard', compact('restaurant'));
     }
 
     /**
@@ -40,7 +45,7 @@ class RestaurantController extends Controller
             'user_id' => 'required|string',
         ]);
 
-        $restaurant = New Restaurant();
+        $restaurant = new Restaurant();
 
         $restaurant->fill($formData);
         $restaurant->user_id = $formData['user_id'];

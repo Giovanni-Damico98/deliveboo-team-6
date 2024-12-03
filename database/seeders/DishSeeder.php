@@ -18,7 +18,7 @@ class DishSeeder extends Seeder
         [
             "name" => "Carbonara",
             "description" => "Pasta con crema pecorino, pepe e uovo con aggiunta di guanciale croccante",
-            "price" => 12,00,
+            "price" => 12.00,
             "restaurant_id" => 1,
             "visible" => true,
             "image" => "example.com",
@@ -26,7 +26,7 @@ class DishSeeder extends Seeder
         [
             "name" => "Gricia",
             "description" => "Pasta con crema pecorino, parmigiano e pepe con aggiunta di guanciale croccante",
-            "price" => 10,00,
+            "price" => 10.00,
             "restaurant_id" => 1,
             "visible" => true,
             "image" => "example.com",

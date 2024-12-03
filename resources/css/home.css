@@ -21,7 +21,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.45); /* Overlay nero con opacità 3s0% */
+    background-color: rgba(0, 0, 0, 0.45); /* Overlay nero con opacità 45% */
     z-index: 1;
 }
 
@@ -35,4 +35,11 @@ body {
 
 .title {
     font-size: 6vh;
+}
+
+/* media query mobile */
+@media (max-width: 425px) {
+    .adjust-text-spacing {
+        transform: translateX(-50%) translatey(-375%) !important; /* sposta il testo più in basso */
+    }
 }

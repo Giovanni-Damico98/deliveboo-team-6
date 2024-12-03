@@ -18,7 +18,7 @@
         <form action="{{route('admin.dishes.store')}}" method="POST">
             @csrf
             <div class="row mb-3">
-                <div class="col mb-3">
+                {{-- <div class="col mb-3">
                     <label class="form-label" for="restaurant_id">Restaurant</label>
                     <select class="form-select" name="restaurant_id" id="restaurant_id" aria-label="Default select example">
                         <option value="">Selezione il ristorante</option>
@@ -26,7 +26,7 @@
                             <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
                 <div class="col-4 mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" name="name" class="form-control" id="name" value="{{old('name', '')}}" placeholder="name">
@@ -46,8 +46,8 @@
                 <div class="col mb-3">
                     <label class="form-label" for="visible">Visible</label>
                     <select class="form-select" name="visible" id="visible" aria-label="Default select example">
-                        <option value="true">true</option>
-                        <option value="false">false</option>
+                        <option value="1" {{old('visible') == 1 ? 'selected' : ''}}>true</option>
+                        <option value="0" {{old('visible') == 0 ? 'selected' : ''}}>false</option>
                     </select>
                 </div>
             </div>

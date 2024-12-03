@@ -42,18 +42,24 @@ class DishController extends Controller
     {
         //
         $formData = $request->validate([
-            'restaurant_id' => 'required|string',
+            // 'restaurant_id' => 'required|string',
             'name' => 'required|string',
             'description' => 'nullable|string',
             'price' => 'required|decimal:2',
-            'visible' => 'nullable|boolean',
+            'visible' => 'required|boolean',
             'image' => 'nullable|url:http,https',
         ]);
+
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+        if(!$restaurant) {
+            return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
+        }
 
         $dish = new Dish();
 
         $dish->fill($formData);
-        $dish->restaurant_id = $formData['restaurant_id'];
+        $dish->restaurant_id = $restaurant->id;
+        // $dish->restaurant_id = $formData['restaurant_id'];
         $dish->save();
 
         return redirect()->route("admin.dishes.index");
@@ -88,12 +94,12 @@ class DishController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Dish $dish)
     {
         //
-        $dish = Dish::findOrFail($id);
+        // $dish = Dish::findOrFail($id);
         $dish->delete();
 
-        return redirect()->route("admin.dishes.delete");
+        return redirect()->route("admin.dishes.index");
     }
 }

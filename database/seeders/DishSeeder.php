@@ -14,35 +14,34 @@ class DishSeeder extends Seeder
     public function run(): void
     {
         //
-    $dishes = [
-        [
-            "name" => "Carbonara",
-            "description" => "Pasta con crema pecorino, pepe e uovo con aggiunta di guanciale croccante",
-            "price" => 12.00,
-            "restaurant_id" => 1,
-            "visible" => true,
-            "image" => "example.com",
-        ],
-        [
-            "name" => "Gricia",
-            "description" => "Pasta con crema pecorino, parmigiano e pepe con aggiunta di guanciale croccante",
-            "price" => 10.00,
-            "restaurant_id" => 1,
-            "visible" => true,
-            "image" => "example.com",
-        ],
-    ];
+        $dishes = [
+            [
+                "name" => "Carbonara",
+                "description" => "Pasta con crema pecorino, pepe e uovo con aggiunta di guanciale croccante",
+                "price" => 12.00,
+                "restaurant_id" => 1,
+                "visible" => true,
+                "image" => "example.com",
+            ],
+            [
+                "name" => "Gricia",
+                "description" => "Pasta con crema pecorino, parmigiano e pepe con aggiunta di guanciale croccante",
+                "price" => 10.00,
+                "restaurant_id" => 1,
+                "visible" => true,
+                "image" => "example.com",
+            ],
+        ];
 
-    foreach ($dishes as $dish){
-        $newDish = new Dish();
-        $newDish->name = $dish["name"];
-        $newDish->description = $dish["description"];
-        $newDish->price = $dish["price"];
-        $newDish->restaurant_id = $dish["restaurant_id"];
-        $newDish->visible = $dish["visible"];
-        $newDish->image = $dish["image"];
-        $newDish->save();
-    }
-
+        foreach ($dishes as $dish) {
+            $newDish = new Dish();
+            $newDish->name = $dish["name"];
+            $newDish->description = $dish["description"];
+            $newDish->price = $dish["price"];
+            $newDish->restaurant_id = $dish["restaurant_id"];
+            $newDish->visible = $dish["visible"];
+            $newDish->image = $dish["image"];
+            $newDish->save();
+        }
     }
 }

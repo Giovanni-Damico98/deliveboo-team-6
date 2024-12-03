@@ -18,12 +18,12 @@ class UserSeeder extends Seeder
         [
             "name" => "Admin",
             "email" => "user@admin.com",
-            "password" => bcrypt("adminadmin"),
+            "password" => bcrypt('adminadmin'),
 
         ],
         ];
 
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $newUser = new User();
             $newUser->name = $user["name"];
             $newUser->email = $user["email"];

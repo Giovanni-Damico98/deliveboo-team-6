@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [RestaurantController::class, 'index'])->name('admin.dashboard');
+});
 
 Route::prefix("/admin")->name("admin.")->group(function(){
     Route::get("/dishes" , [DishController::class , "index"])->name("dishes.index");
@@ -33,3 +35,4 @@ Route::prefix("/admin")->name("admin.")->group(function(){
 
     Route::delete("/dishes/delete/{dish}" , [DishController::class , "destroy"])->name("dishes.delete");
 });
+

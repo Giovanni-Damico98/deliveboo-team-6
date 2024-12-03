@@ -20,11 +20,12 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-darker bg-black shadow-sm">
+        <nav class="navbar navbar-expand navbar-darker bg-black shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -49,7 +50,8 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                                    <a class="nav-link text-white"
+                                        href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else

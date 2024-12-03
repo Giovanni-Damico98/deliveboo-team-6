@@ -15,15 +15,14 @@ class UserSeeder extends Seeder
     {
         //
         $users = [
-        [
-            "name" => "Admin",
-            "email" => "user@admin.com",
-            "password" => "adminadmin",
-
-        ],
+            [
+                "name" => "Admin",
+                "email" => "user@admin.com",
+                "password" => bcrypt('adminadmin'),
+            ],
         ];
 
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $newUser = new User();
             $newUser->name = $user["name"];
             $newUser->email = $user["email"];

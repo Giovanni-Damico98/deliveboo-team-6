@@ -117,7 +117,7 @@ form .button input:hover {
 /* media query laptop large*/
 @media (max-width: 1440px) {
     .register-container .title::before {
-        width: 3vw;
+        width: 2vw;
     }
 }
 

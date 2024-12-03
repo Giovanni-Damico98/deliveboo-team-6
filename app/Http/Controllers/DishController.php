@@ -11,6 +11,13 @@ class DishController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
+
     public function index()
     {
         //
@@ -57,6 +64,8 @@ class DishController extends Controller
     public function show(string $id)
     {
         //
+        $dish = Dish::findOrFail($id);
+        return view("admin.dishes.show" , compact("dish"));
     }
 
     /**
@@ -81,5 +90,9 @@ class DishController extends Controller
     public function destroy(string $id)
     {
         //
+        $dish = Dish::findOrFail($id);
+        $dish->delete();
+
+        return redirect()->route("admin.dishes.delete");
     }
 }

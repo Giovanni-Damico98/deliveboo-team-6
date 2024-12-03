@@ -25,4 +25,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix("/admin")->name("admin.")->group(function(){
     Route::get("/dishes" , [DishController::class , "index"])->name("dishes.index");
+
+    Route::get("/dishes/show/{dish}" , [DishController::class, "show"])->name("dishes.show");
+
+
+
+
+    Route::delete("/dishes/delete/{dish}" , [DishController::class , "destroy"])->name("dishes.delete");
 });

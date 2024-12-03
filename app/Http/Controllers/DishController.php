@@ -24,8 +24,8 @@ class DishController extends Controller
     public function create()
     {
         //
-        // $restaurants = Restaurant::all();
-        // return view('', compact('restaurants'));
+        $restaurants = Restaurant::all();
+        return view('admin.dishes.create', compact('restaurants'));
     }
 
     /**
@@ -39,7 +39,6 @@ class DishController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|decimal',
             'restaurant_id' => 'required|string',
-            'visible' => 'required|boolean',
             'image' => 'nullable|url:http,https',
         ]);
 

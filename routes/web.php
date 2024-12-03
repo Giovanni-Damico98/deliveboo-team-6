@@ -25,4 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix("/admin")->name("admin.")->group(function(){
     Route::get("/dishes" , [DishController::class , "index"])->name("dishes.index");
+    Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
+    Route::get("/projects", [DishController::class, "store"])->name("dishes.store");
 });

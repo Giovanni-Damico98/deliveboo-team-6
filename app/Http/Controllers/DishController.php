@@ -31,8 +31,8 @@ class DishController extends Controller
     public function create()
     {
         //
-        $restaurants = Restaurant::all();
-        return view('admin.dishes.create', compact('restaurants'));
+        $dishes = Dish::all();
+        return view('admin.dishes.create', compact('dishes'));
     }
 
     /**
@@ -52,15 +52,17 @@ class DishController extends Controller
 
         $dish->fill($formData);
         $dish->save();
+
+        return redirect()->route("admin.dishes.show", $dish->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Dish $dish)
     {
         //
-        $dish = Dish::findOrFail($id);
+        // $dish = Dish::findOrFail($id);
         return view("admin.dishes.show", compact("dish"));
     }
 

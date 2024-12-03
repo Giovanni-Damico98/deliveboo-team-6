@@ -25,8 +25,9 @@
                         {{-- Messaggio centrale homepage --}}
 
                         <div id="body-text">
-                            <p class="mt-4">Effettua il login per gestire la sezione relativa al tuo
-                                ristorante
+                            <p class="mt-4">
+                                Effettua il login per gestire la sezione relativa al tuo
+                                ristorante <br>
                                 oppure registrati
                                 per inserire la tua attività
                             </p>

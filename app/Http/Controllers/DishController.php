@@ -14,6 +14,8 @@ class DishController extends Controller
     public function index()
     {
         //
+        $dish = Dish::all();
+        return view("admin.dishes.index" , compact("dish"));
     }
 
     /**
@@ -34,7 +36,7 @@ class DishController extends Controller
         //
         $formData = $request->validate([
             'name' => 'required|string',
-            'description' => 'nullable|string', 
+            'description' => 'nullable|string',
             'price' => 'required|decimal',
             'restaurant_id' => 'required|string',
             'visible' => 'required|boolean',

@@ -21,8 +21,8 @@ class DishController extends Controller
     public function index()
     {
         //
-        $dish = Dish::all();
-        return view("admin.dishes.index" , compact("dish"));
+        $dishes = Dish::all();
+        return view("admin.dishes.index", compact("dishes"));
     }
 
     /**
@@ -48,11 +48,10 @@ class DishController extends Controller
             'image' => 'nullable|url:http,https',
         ]);
 
-        $dish = New Dish();
+        $dish = new Dish();
 
         $dish->fill($formData);
         $dish->save();
-
     }
 
     /**
@@ -62,7 +61,7 @@ class DishController extends Controller
     {
         //
         $dish = Dish::findOrFail($id);
-        return view("admin.dishes.show" , compact("dish"));
+        return view("admin.dishes.show", compact("dish"));
     }
 
     /**

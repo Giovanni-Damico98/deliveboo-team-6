@@ -28,7 +28,7 @@ Route::prefix('/admin')->group(function () {
 Route::prefix("/admin")->name("admin.")->group(function () {
     Route::get("/dishes", [DishController::class, "index"])->name("dishes.index");
     Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
-    Route::get("/projects", [DishController::class, "store"])->name("dishes.store");
+    Route::post("/dishes", [DishController::class, "store"])->name("dishes.store");
     Route::get("/dishes/show/{dish}", [DishController::class, "show"])->name("dishes.show");
     Route::delete("/dishes/delete/{dish}", [DishController::class, "destroy"])->name("dishes.delete");
 });

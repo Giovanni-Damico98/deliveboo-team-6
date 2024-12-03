@@ -40,11 +40,11 @@ class RestaurantController extends Controller
             'user_id' => 'required|string',
         ]);
 
-        $dish = New Restaurant();
+        $restaurant = New Restaurant();
 
-        $dish->fill($formData);
-        $dish->user_id = $formData['user_id'];
-        $dish->save();
+        $restaurant->fill($formData);
+        $restaurant->user_id = $formData['user_id'];
+        $restaurant->save();
     }
 
     /**

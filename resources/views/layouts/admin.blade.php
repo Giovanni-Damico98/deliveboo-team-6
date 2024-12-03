@@ -28,12 +28,12 @@
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
-                        <li class="navitem">
+                        {{-- <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.orders.index') }}">Ordini</a>
                         </li>
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.statistics') }}">Statistiche</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">

@@ -30,5 +30,7 @@ Route::prefix("/admin")->name("admin.")->group(function () {
     Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
     Route::post("/dishes", [DishController::class, "store"])->name("dishes.store");
     Route::get("/dishes/show/{dish}", [DishController::class, "show"])->name("dishes.show");
+    Route::get("/dishes/edit/{dish}", [DishController::class, "edit"])->name("dishes.edit");
+    Route::put("/dishes/update/{dish}", [DishController::class, "update"])->name("dishes.update");
     Route::delete("/dishes/delete/{dish}", [DishController::class, "destroy"])->name("dishes.delete");
 });

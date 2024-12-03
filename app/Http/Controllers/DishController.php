@@ -52,12 +52,14 @@ class DishController extends Controller
 
         $dish->fill($formData);
         $dish->save();
+
+        return redirect()->route('admin.dishes.index')->with('message', 'Piatto creato con successo!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
         $dish = Dish::findOrFail($id);
@@ -69,17 +71,28 @@ class DishController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        return view("admin.dishes.edit", compact("dish"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+{
+    // Valida i dati
+    $formData = $request->validate([
+        'name' => 'required|string',
+        'description' => 'nullable|string',
+        'price' => 'required|decimal:2',
+        'image' => 'nullable|url:http,https',
+    ]);
 
+    $dish = Dish::findOrFail($id);
+    $dish->update($formData);
+
+    return redirect()->route('admin.dishes.index')->with('message', 'Piatto aggiornato con successo!');
+}
     /**
      * Remove the specified resource from storage.
      */

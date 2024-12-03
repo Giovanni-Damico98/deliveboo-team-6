@@ -16,7 +16,7 @@
         {{-- Navbar --}}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand"  href="{{ route('dashboard') }}">
                     Admin dashboard
                 </a>
 
@@ -30,16 +30,16 @@
                         <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
-                        {{-- <li class="navitem">
-                            <a class="nav-link" href="{{ route('admin.orders.index') }}">Ordini</a>
+                       <li class="navitem">
+                            <a class="nav-link" href="#{{-- {{ route('admin.orders.index') }} --}}">Ordini</a>
                         </li>
                         <li class="navitem">
-                            <a class="nav-link" href="{{ route('admin.statistics') }}">Statistiche</a>
-                        </li> --}}
+                            <a class="nav-link" href="#{{-- {{ route('admin.statistics') }} --}}">Statistiche</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a href="{{ route('logout') }}"
+                            <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>

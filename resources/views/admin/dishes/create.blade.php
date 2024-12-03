@@ -25,6 +25,10 @@
                     <input type="url" name="image" class="form-control" id="image" value="{{old('image', '')}}">
                 </div>
             </div>
+            <div class="d-flex justify-content-around">
+                <button type="submit" class="btn btn-success">CREA</button>
+                <button type="reset" class="btn btn-warning">RESET</button>
+            </div>
         </form>
     </div>
 </main>

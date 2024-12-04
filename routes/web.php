@@ -29,8 +29,18 @@ Route::prefix("/admin")->name("admin.")->group(function () {
     Route::get("/dishes", [DishController::class, "index"])->name("dishes.index");
     Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
     Route::post("/dishes", [DishController::class, "store"])->name("dishes.store");
-    Route::get("/dishes/show/{dish}", [DishController::class, "show"])->name("dishes.show");
-    Route::get("/dishes/edit/{dish}", [DishController::class, "edit"])->name("dishes.edit");
-    Route::put("/dishes/update/{dish}", [DishController::class, "update"])->name("dishes.update");
-    Route::delete("/dishes/delete/{dish}", [DishController::class, "destroy"])->name("dishes.delete");
+
+    // Rotta per il singolo piatto
+    Route::get("/dishes/{dish}", [DishController::class, "show"])->name("dishes.show");
+
+    // Rotta per la modifica dei piatti
+    Route::get("/dishes/{dish}/edit", [DishController::class, "edit"])->name("dishes.edit");
+
+    //
+    Route::put("/dishes/{dish}/update", [DishController::class, "update"])->name("dishes.update");
+
+    // Rotta per l'eliminazione dei piatti
+    Route::delete("/dishes/{dish}/delete", [DishController::class, "destroy"])->name("dishes.delete");
 });
+
+// uri: -> Uniform Resource Identifier

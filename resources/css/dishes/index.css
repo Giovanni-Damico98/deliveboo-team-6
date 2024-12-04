@@ -1,0 +1,138 @@
+body {
+    background-color: black !important;
+}
+
+.action-div a,
+form,
+.new-dish a {
+    &:hover {
+        scale: 1.05;
+    }
+    &:active {
+        scale: 1;
+    }
+}
+
+/* utilizzo important per sovrascrivere le regole della card di bootstrap */
+.card {
+    position: relative !important;
+    height: 50vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: none !important;
+    &:hover {
+        scale: 1.02;
+    }
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.637);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body {
+    padding: 10px !important;
+    z-index: 1;
+    align-content: center;
+}
+
+/* media query monitor 4k */
+@media (max-width: 2560px) {
+    .card {
+        height: 35vh !important;
+    }
+    .card-body {
+        font-size: 2vh;
+    }
+
+    #admin-dashboard
+        > main
+        > div
+        > div
+        > div.new-dish.d-flex.w-100.justify-content-center.mb-3
+        > a {
+        font-size: 2vh;
+    }
+
+    #admin-dashboard
+        > main
+        > div
+        > div
+        > div.row.mb-2.w-75
+        > div
+        > div
+        > div.card-body
+        > div
+        > a {
+        font-size: 2vh;
+    }
+
+    #admin-dashboard
+        > main
+        > div
+        > div
+        > div.row.mb-2.w-75
+        > div
+        > div
+        > div.card-body
+        > div
+        > form
+        > input {
+        font-size: 2vh;
+    }
+}
+
+/* media query laptop L */
+@media (max-width: 1440px) {
+    .card {
+        height: 40vh !important;
+    }
+}
+
+/* media query laptop M */
+@media (max-width: 1366px) {
+    .card {
+        height: 50vh !important;
+    }
+}
+
+/* media query laptop S */
+@media (max-width: 1024px) {
+    .card {
+        height: 50vh !important;
+    }
+}
+
+/* media query tablet */
+@media (max-width: 768px) {
+    .card {
+        height: 60vh !important;
+    }
+}
+
+/* media query mobile */
+@media (max-width: 425px) {
+    .card {
+        height: 55vh !important;
+        margin-bottom: 3vh;
+    }
+    #admin-dashboard
+        > main
+        > div
+        > div
+        > div.new-dish.d-flex.w-100.justify-content-center.mb-5
+        > a {
+        width: 50vw !important;
+    }
+}

@@ -54,7 +54,7 @@ class DishController extends Controller
             // 'restaurant_id' => 'required|string',
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'price' => 'required|decimal:2',
+            'price' => 'required|decimal:2|min:0|max:500',
             'visible' => 'required|boolean',
             'image' => 'nullable|url:http,https',
         ]);
@@ -101,7 +101,7 @@ class DishController extends Controller
         $formData = $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'price' => 'required|decimal:2',
+            'price' => 'required|decimal:2|min:0|max:500',
             'visible' => 'required|boolean',
             'image' => 'nullable|url:http,https',
         ]);

@@ -25,7 +25,7 @@ class DishController extends Controller
 
         // Todo: first()-> recupera il primo record che soddisfa la condizione
         $restaurant = Restaurant::where('user_id', auth()->id())->first();
-        if(!$restaurant) {
+        if (!$restaurant) {
             return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
         }
 
@@ -60,7 +60,7 @@ class DishController extends Controller
         ]);
 
         $restaurant = Restaurant::where('user_id', auth()->id())->first();
-        if(!$restaurant) {
+        if (!$restaurant) {
             return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
         }
 
@@ -79,8 +79,6 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
-        // $dish = Dish::findOrFail($id);
         return view("admin.dishes.show", compact("dish"));
     }
 

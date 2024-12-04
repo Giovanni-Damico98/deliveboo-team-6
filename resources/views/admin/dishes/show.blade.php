@@ -1,24 +1,28 @@
-@extends("layouts.app")
+@extends('layouts.app')
+@vite('resources/css/dishes/show.css')
 
-@section("page-title", "Piatto {{$dish->name}}")
 
-@section("main-content")
-<h1 class="text-center text-white mb-4">
-    Piatto {{$dish["name"]}}
-</h1>
-<div class="container">
-    <div class="row mb-2">
-        <div>
-            <img src="{{$dish["image"]}}" class="pt-2" alt="...">
-            <div class="card-body">
-            <h1 class="card-text">Nome: {{ $dish["name"] }}</h1>
-            <p class="card-text">Descrizione: {{ $dish["description"] }}</p>
-            <p class="card-text"><strong> Prezzo: $ {{ $dish["price"] }} </strong></p>
+@section('page-title', "Piatto {{ $dish->name }}")
+
+@section('content')
+    <h1 class="text-center text-white mt-4 fs-1">
+        {{ $dish['name'] }}
+    </h1>
+    <div class="container-fluid w-75">
+        <div class="row mb-2">
+            <div>
+                <div class="card-body d-flex flex-column align-items-center gap-2">
+                    <img src="{{ $dish['image'] }}" class="pt-2" alt="...">
+                    <p class="card-text text-center text-white fs-4 m-3">{{ $dish['description'] }}</p>
+                    <p class="card-text text-white fs-4"><strong> Prezzo: $ {{ $dish['price'] }} </strong></p>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-primary w-75 m-3 fs-4" href="{{ route('admin.dishes.index') }}">
+                    Torna al menù
+                </a>
             </div>
         </div>
-        <a class="btn btn-secondary mb-2" href="{{route("admin.dishes.index") }}">
-            Torna al menù
-        </a>
     </div>
-</div>
 @endsection

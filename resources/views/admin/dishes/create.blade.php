@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-2 mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" id="price" min="0" max="999" value="{{old('price', '')}}">
+                    <input type="number" name="price" class="form-control" id="price" min="0" max="999" step=".01" value="{{old('price', '')}}">
                 </div>
                 <div class="col mb-3">
                     <label for="image" class="form-label">Image</label>

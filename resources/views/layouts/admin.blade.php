@@ -38,7 +38,8 @@
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
+                                Logout &nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

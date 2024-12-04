@@ -11,7 +11,7 @@
             <div class="card-body">
                 @if ($errors->any())
                     <div class="alert alert-danger">
-                        <h4 class="text-danger">Alcuni campi non sono validi</h4>
+                        <h4 class="text-danger">Oops!</h4>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>

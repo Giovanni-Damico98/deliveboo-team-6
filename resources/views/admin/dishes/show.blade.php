@@ -1,13 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @vite('resources/css/dishes/show.css')
 
 
 @section('page-title', "Piatto {{ $dish->name }}")
 
 @section('content')
-    <h1 class="text-center text-white mt-4 fs-1">
-        {{ $dish['name'] }}
-    </h1>
+<div class="container">
+    <div>
+        <h1 class="text-center text-white mt-4 fs-1">
+            {{ $dish['name'] }}
+        </h1>
+    </div>
+
     <div class="container-fluid w-75">
         <div class="row mb-2">
             <div>
@@ -25,4 +29,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

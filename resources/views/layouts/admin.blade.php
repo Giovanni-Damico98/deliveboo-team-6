@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin dashboard</title>
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/admin.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -53,7 +53,7 @@
         {{-- Main content --}}
 
         <main class="py-4">
-            <div class="container">
+            <div class="container-fluid w-100 d-flex justify-content-center">
                 @yield('content')
             </div>
         </main>

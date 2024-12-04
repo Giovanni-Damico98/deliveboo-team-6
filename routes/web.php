@@ -28,6 +28,8 @@ Route::prefix('/admin')->group(function () {
 Route::prefix("/admin")->name("admin.")->group(function () {
     Route::get("/dishes", [DishController::class, "index"])->name("dishes.index");
     Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
+
+    // Rotta per salvare nel database i nuovi dati creati
     Route::post("/dishes", [DishController::class, "store"])->name("dishes.store");
 
     // Rotta per il singolo piatto

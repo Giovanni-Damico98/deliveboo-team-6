@@ -11,7 +11,7 @@
         <div class="row mb-2 w-75">
             @forelse ($dishes as $index => $dish)
                 <div class="col-md-4">
-                    <div class="card card-overlay" style="background-image: url('{{ asset($dish->image) }}');">
+                    <div class="card card-overlay mb-4" style="background-image: url('{{ asset($dish->image) }}');">
                         <div class="card-body">
                             <h2 class="card-title text-white">{{ $dish->name }}</h2>
                             <p class="card-text text-white">

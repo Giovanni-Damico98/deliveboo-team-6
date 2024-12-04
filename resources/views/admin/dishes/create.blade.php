@@ -6,7 +6,7 @@
     <div class="container">
         <div class="card shadow-lg">
             <div class="card-header bg-success text-white text-center">
-                <h2>Aggiungi Piatto</h2>
+                <h2>Aggiungi</h2>
             </div>
             <div class="card-body">
                 @if ($errors->any())

@@ -96,12 +96,13 @@
                         @enderror
                     </div>
                 </div>
-
+                <p> * Tutti i campi sono obbligatori</p>
                 <!-- Pulsante di registrazione -->
                 <div class="button">
                     <input type="submit" value="Registrati">
                 </div>
             </form>
+
         </div>
     </div>
 @endsection

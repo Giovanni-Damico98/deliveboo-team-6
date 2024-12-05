@@ -16,10 +16,10 @@ class RestaurantSeeder extends Seeder
         //
         $restaurants = [
         [
-            "name" => "Dar Romano",
+            "name" => "Dar Bottarolo",
             "address" => "Via le mani dal naso 1",
             "vat_number" => 123567345612,
-            "image" => "example.com",
+            "image" => "https://darbottarolo.it/wp-content/uploads/2023/02/WhatsApp-Image-2023-02-15-at-15.43.41.jpeg",
             "user_id" => 1,
         ]
 

@@ -21,7 +21,7 @@ class DishSeeder extends Seeder
                 "price" => 12.00,
                 "restaurant_id" => 1,
                 "visible" => true,
-                "image" => "example.com",
+                "image" => "https://www.mamablip.com/storage/Traditional-Spaghetti-alla-Carbonara_1131611747132.jpg",
             ],
             [
                 "name" => "Gricia",
@@ -29,7 +29,7 @@ class DishSeeder extends Seeder
                 "price" => 10.00,
                 "restaurant_id" => 1,
                 "visible" => true,
-                "image" => "example.com",
+                "image" => "https://www.giallozafferano.it/images/219-21929/Pasta-alla-gricia_650x433_wm.jpg",
             ],
         ];
 

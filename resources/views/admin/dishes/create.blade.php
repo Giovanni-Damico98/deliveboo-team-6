@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="price" class="form-label fw-bold">Prezzo</label>
-                            <input type="number" name="price" class="form-control" id="price" min="0"
+                            <input type="number" name="price" class="form-control" id="price" min="0.1"
                                 max="999" step="0.01" value="{{ old('price', '') }}" placeholder="Es. 12.99" required>
                         </div>
                         <div class="col-12">

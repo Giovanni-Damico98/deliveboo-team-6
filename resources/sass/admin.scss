@@ -9,11 +9,7 @@
 @import "bootstrap/scss/bootstrap";
 
 .navbar {
-    background-color: #1a1c1c !important;
-}
-
-#admin-dashboard>nav {
-    height: 8vh;
+    background-color: #1a1c1c;
 }
 
 .nav-link {
@@ -21,10 +17,5 @@
     margin: 1vw;
 }
 
-/* media query mobile */
-@media (max-width: 425px) {
-    #app>nav>div>a>img {
-        height: 9.9vh;
-        width: 25vw;
-    }
-}
+
+

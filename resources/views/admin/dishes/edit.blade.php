@@ -19,7 +19,7 @@
             </div>
             @endif
             <div class="card-body">
-                <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST">
+                <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -50,10 +50,16 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="image" class="form-label fw-bold">URL Immagine</label>
-                        <input type="url" class="form-control" id="image" name="image"
-                            value="{{ $dish->image }}">
+                        <label for="image" class="form-label fw-bold">Immagine del Piatto</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
                     </div>
+
+                    @if($dish->image)
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Immagine Attuale</label>
+                            <img src="{{ asset('storage/' . $dish->image) }}" alt="Immagine del Piatto" class="img-fluid">
+                        </div>
+                    @endif
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary w-50">Salva Modifiche</button>

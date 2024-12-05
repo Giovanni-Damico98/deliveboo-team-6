@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
@@ -48,31 +49,37 @@ class DishController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-        $formData = $request->validate([
-            // 'restaurant_id' => 'required|string',
-            'name' => 'required|string',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0.10|max:999',
-            'visible' => 'required|boolean',
-            'image' => 'nullable|url:http,https',
-        ]);
+{
 
-        $restaurant = Restaurant::where('user_id', auth()->id())->first();
-        if (!$restaurant) {
-            return redirect()->route('dashboard')->with('error', 'devi prima creare un ristorante');
-        }
+    $formData = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric|min:0.10|max:999',
+        'visible' => 'required|boolean',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+    ]);
 
-        $dish = new Dish();
-
-        $dish->fill($formData);
-        $dish->restaurant_id = $restaurant->id;
-        // $dish->restaurant_id = $formData['restaurant_id'];
-        $dish->save();
-
-        return redirect()->route("admin.dishes.index");
+    $restaurant = Restaurant::where('user_id', auth()->id())->first();
+    if (!$restaurant) {
+        return redirect()->route('dashboard')->with('error', 'Devi prima creare un ristorante.');
     }
+
+    $imagePath = null;
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('dish_images', 'public');
+    }
+
+    Dish::create([
+        'name' => $formData['name'],
+        'description' => $formData['description'],
+        'price' => $formData['price'],
+        'visible' => $formData['visible'],
+        'image' => $imagePath,
+        'restaurant_id' => $restaurant->id,
+    ]);
+
+    return redirect()->route("admin.dishes.index")->with('success', 'Piatto creato con successo!');
+}
 
     /**
      * Display the specified resource.
@@ -97,17 +104,38 @@ class DishController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validazione dei dati
         $formData = $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0.10|max:999',
             'visible' => 'required|boolean',
-            'image' => 'nullable|url:http,https',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
+        // Trova il piatto da modificare
         $dish = Dish::findOrFail($id);
-        $dish->update($formData);
+
+        // Gestione del caricamento della nuova immagine
+        $imagePath = $dish->image; // Manteniamo l'immagine attuale se non viene caricata una nuova
+        if ($request->hasFile('image')) {
+            // Elimina l'immagine precedente se esiste
+            if ($dish->image) {
+                \Storage::disk('public')->delete($dish->image);
+            }
+
+            // Salva la nuova immagine
+            $imagePath = $request->file('image')->store('dish_images', 'public');
+        }
+
+        // Aggiorna i dati del piatto
+        $dish->update([
+            'name' => $formData['name'],
+            'description' => $formData['description'],
+            'price' => $formData['price'],
+            'visible' => $formData['visible'],
+            'image' => $imagePath,
+        ]);
 
         return redirect()->route('admin.dishes.index')->with('message', 'Piatto aggiornato con successo!');
     }

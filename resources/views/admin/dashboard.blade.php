@@ -1,24 +1,26 @@
 @extends('layouts.admin')
-@vite('resources/css/admin/dashboard.css')
-@section('content')
- <div class="restaurant-card" style="background-image: url('{{ asset('storage/' . $restaurant->image) }}');">
-        <div class="restaurant-card-overlay">
-            <div class="restaurant-card-content">
-                <h1 class="restaurant-title m-2 fs-1">{{ $restaurant->name }}</h1>
-                <p class="restaurant-info mt-5">
-                    Organizza i tuoi piatti, i tuoi ordini e le statistiche
-                </p>
-                <div class="link-div d-flex justify-content-around mt-3">
-                    <a class="link" href="{{ route('admin.dishes.index') }}">Menù</a>
-                    <a class="link" href="#{{-- {{ route('admin.orders.index') }} --}}">Ordini</a>
-                    <a class="link" href="#{{-- {{ route('admin.statistics') }} --}}">Statistiche</a>
-                </div>
 
-                <div class="card-info d-flex justify-content-between mt-4">
-                    <p class="restaurant-vat">P. IVA : <br> {{ $restaurant->vat_number }}</p>
-                    <p class="restaurant-address">Indirizzo : <br> {{ $restaurant->address }}</p>
-                </div>
+@section('content')
+<div class="container mt-4">
+    <div class="card bg-dark text-white border-0">
+        <div class="card-body d-flex flex-column justify-content-between" style="background-image: url('{{ asset('storage/' . $restaurant->image) }}'); background-size: cover; background-position: center; height: 600px; border-radius: 12px;">
+            <div class="bg-overlay p-4 " style="background-color: rgba(0, 0, 0, 0.6); border-radius: 12px; height: 100%;">
+                <h1 class="card-title fw-bold text-center mb-3">{{ $restaurant->name }}</h1>
+                <p class="text-center fs-5">
+                    Organizza i tuoi piatti, i tuoi ordini e le statistiche, tramite i link sulla Navbar
+                </p>
+                    <div class="text-center mt-4">
+                        <div>
+                            <p class="mb-0">P. IVA:</p>
+                            <strong>{{ $restaurant->vat_number }}</strong>
+                        </div>
+                        <div>
+                            <p class="mb-0">Indirizzo:</p>
+                            <strong>{{ $restaurant->address }}</strong>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

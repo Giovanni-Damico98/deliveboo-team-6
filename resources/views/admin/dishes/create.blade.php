@@ -19,7 +19,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('admin.dishes.store') }}" method="POST">
+                <form action="{{ route('admin.dishes.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-4">
                         <div class="col-md-6">
@@ -37,10 +37,9 @@
                             <textarea name="description" class="form-control" id="description" rows="4" placeholder="Descrivi il piatto"
                                 required>{{ old('description', '') }}</textarea>
                         </div>
-                        <div class="col-md-6">
-                            <label for="image" class="form-label fw-bold">URL Immagine</label>
-                            <input type="url" name="image" class="form-control" id="image"
-                                value="{{ old('image', '') }}" placeholder="https://esempio.com/immagine.jpg">
+                        <div class="mb-4">
+                            <label for="image" class="form-label fw-bold">Immagine del Piatto</label>
+                            <input type="file" name="image" class="form-control" id="image" accept="image/*">
                         </div>
                         <div class="col-md-6">
                             <label for="visible" class="form-label fw-bold">Visibilità</label>

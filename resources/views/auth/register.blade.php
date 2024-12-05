@@ -10,7 +10,7 @@
         <div class="title">Registrazione</div>
         <div class="register-content">
             <!-- Form di registrazione -->
-            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+            <form method="POST" autocomplete="false" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Dati dell'utente -->
@@ -18,7 +18,7 @@
                     <div class="input-box">
                         <span class="details">Nome</span>
                         <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}" placeholder="Inserisci il nome" required autocomplete="name"
+                            value="{{ old('name') }}" placeholder="Inserisci il nome" required autocomplete="off"
                             autofocus>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -28,8 +28,8 @@
                     </div>
                     <div class="input-box">
                         <span class="details">E-mail</span>
-                        <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"  size="30"
-                            value="{{ old('email') }}" placeholder="Inserisci la mail" required autocomplete="email">
+                        <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"
+                            value="{{ old('email') }}" placeholder="Inserisci la mail" required autocomplete="off">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                     <div class="input-box">
                         <span class="details">Password</span>
                         <input id="password" type="password" class="@error('password') is-invalid @enderror"
-                            name="password" placeholder="Inserisci la password" required autocomplete="new-password">
+                            name="password" placeholder="Inserisci la password" required autocomplete="off">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                     <div class="input-box">
                         <span class="details">Conferma Password</span>
                         <input id="password-confirm" type="password" name="password_confirmation"
-                            placeholder="Conferma la password" required autocomplete="new-password">
+                            placeholder="Conferma la password" required autocomplete="off">
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
                         <span class="details">Nome dell'Attività</span>
                         <input id="restaurant_name" type="text" class="@error('restaurant_name') is-invalid @enderror"
                             name="restaurant_name" value="{{ old('restaurant_name') }}" placeholder="Nome dell'attività"
-                            required>
+                            required autocomplete="off">
                         @error('restaurant_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -69,7 +69,7 @@
                     <div class="input-box">
                         <span class="details">Indirizzo dell'Attività</span>
                         <input id="address" type="text" class="@error('address') is-invalid @enderror" name="address"
-                            value="{{ old('address') }}" placeholder="Indirizzo dell'attività" required>
+                            value="{{ old('address') }}" placeholder="Indirizzo dell'attività" required autocomplete="off">
                         @error('address')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

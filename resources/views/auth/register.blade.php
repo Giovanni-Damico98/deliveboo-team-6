@@ -2,6 +2,8 @@
 {{-- collego il file register.css per l'estetica di register.blade.php --}}
 @vite('resources/css/register.css')
 
+@vite('resources/js/register.js')
+
 @section('content')
     <div class="register-container">
         <!-- Titolo della sezione -->

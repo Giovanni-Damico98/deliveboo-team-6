@@ -9,10 +9,10 @@
 @section('content')
     <div class="card-container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 text-white">
                 {{-- Titolo --}}
                 <div class=" text-center">
-                    <h1 class="title">Benvenuto!</h1>
+                    <h1 class="">Benvenuto!</h1>
                 </div>
                 <div class="d-flex">
 

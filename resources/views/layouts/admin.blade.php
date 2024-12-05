@@ -25,8 +25,12 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="navitem">
+                            <a class="nav-link" href="{{ route('admin.dishes.trashed') }}">Piatti fuori menù</a>
+                        </li>
+                        <li class="navitem">
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
+
                         <li class="navitem">
                             <a class="nav-link" href="#{{-- {{ route('admin.orders.index') }} --}}">Ordini</a>
                         </li>

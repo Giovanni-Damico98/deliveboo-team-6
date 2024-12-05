@@ -28,7 +28,7 @@ Route::prefix('/admin')->group(function () {
 Route::prefix("/admin")->name("admin.")->group(function () {
     Route::get("/dishes", [DishController::class, "index"])->name("dishes.index");
     Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
-
+    Route::get('/dishes/trashed' , [DishController::class , "trashed"])->name("dishes.trashed");
     // Rotta per salvare nel database i nuovi dati creati
     Route::post("/dishes", [DishController::class, "store"])->name("dishes.store");
 
@@ -43,6 +43,9 @@ Route::prefix("/admin")->name("admin.")->group(function () {
 
     // Rotta per l'eliminazione dei piatti
     Route::delete("/dishes/{dish}/delete", [DishController::class, "destroy"])->name("dishes.delete");
+
+    Route::patch("/dishes/{id}/restore", [DishController::class, "restore"])->name("dishes.restore");
+    Route::delete("/dishes/{id}/force-delete", [DishController::class, "forceDelete"])->name("dishes.forceDelete");
 });
 
 // uri: -> Uniform Resource Identifier

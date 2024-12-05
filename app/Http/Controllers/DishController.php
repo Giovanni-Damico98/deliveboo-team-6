@@ -123,4 +123,23 @@ class DishController extends Controller
 
         return redirect()->route("admin.dishes.index");
     }
+
+    public function trashed(){
+        $trashedDishes = Dish::onlyTrashed()->get();
+        return view ("admin.dishes.trashed", compact("trashedDishes"));
+    }
+
+    public function restore(string $id){
+        $dish = Dish::onlyTrashed()->findOrFail($id);
+        $dish->restore();
+
+        return redirect()->route("admin.dishes.trashed")->with("success" , "Ripristinato con Successo");
+    }
+
+    public function forceDelete(string $id){
+        $dish = Dish::onlyTrashed()->findOrFail($id);
+        $dish->forceDelete();
+
+        return redirect()->route("admin.dishes.trashed")->with("success" , "Eliminato con Successo");
+    }
 }

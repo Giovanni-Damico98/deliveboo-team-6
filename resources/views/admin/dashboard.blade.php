@@ -9,7 +9,7 @@
                     Organizza i tuoi piatti, i tuoi ordini e le statistiche
                 </p>
                 <div class="link-div d-flex justify-content-around mt-3">
-                    <a class="link" href="{{ route('admin.dishes.index') }}">Piatti</a>
+                    <a class="link" href="{{ route('admin.dishes.index') }}">Menù</a>
                     <a class="link" href="#{{-- {{ route('admin.orders.index') }} --}}">Ordini</a>
                     <a class="link" href="#{{-- {{ route('admin.statistics') }} --}}">Statistiche</a>
                 </div>

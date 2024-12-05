@@ -45,6 +45,7 @@ h1 {
     width: 50vh;
     height: 70vh;
 }
+
 .form-container {
     border: 1px solid hsla(0, 0%, 65%, 0.158);
     box-shadow: 0 0 36px 1px rgba(0, 0, 0, 0.2);
@@ -166,6 +167,7 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
+
 .opacity {
     opacity: 0.6;
 }
@@ -197,6 +199,7 @@ h1 {
         -ms-transform: scale(1.025);
         -o-transform: scale(1.025);
     }
+
     25% {
         transform: scale(1);
         -webkit-transform: scale(1);
@@ -204,6 +207,7 @@ h1 {
         -ms-transform: scale(1);
         -o-transform: scale(1);
     }
+
     75% {
         transform: scale(1.025);
         -webkit-transform: scale(1.025);
@@ -211,6 +215,7 @@ h1 {
         -ms-transform: scale(1.025);
         -o-transform: scale(1.025);
     }
+
     100% {
         transform: scale(1);
         -webkit-transform: scale(1);
@@ -219,14 +224,17 @@ h1 {
         -o-transform: scale(1);
     }
 }
+
 /* media query monitor 4k */
 @media (max-width: 2560px) {
     .register-forget a {
         font-size: 2vh;
     }
+
     #password {
         margin: 5vh 0;
     }
+
     #email {
         margin-top: 5vh;
     }
@@ -237,13 +245,8 @@ h1 {
     .register-forget a {
         font-size: 2vh;
     }
-    #app
-        > main
-        > section
-        > div.login-container
-        > div.form-container
-        > form
-        > button {
+
+    #app>main>section>div.login-container>div.form-container>form>button {
         margin-bottom: 1rem;
     }
 }
@@ -253,13 +256,8 @@ h1 {
     .register-forget a {
         font-size: 2vh;
     }
-    #app
-        > main
-        > section
-        > div.login-container
-        > div.form-container
-        > form
-        > button {
+
+    #app>main>section>div.login-container>div.form-container>form>button {
         margin-bottom: 1rem;
     }
 }
@@ -270,13 +268,7 @@ h1 {
         font-size: 2vh;
     }
 
-    #app
-        > main
-        > section
-        > div.login-container
-        > div.form-container
-        > form
-        > button {
+    #app>main>section>div.login-container>div.form-container>form>button {
         margin-bottom: 1rem;
     }
 }

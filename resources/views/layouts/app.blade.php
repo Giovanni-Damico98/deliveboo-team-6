@@ -23,7 +23,9 @@
         <nav class="navbar navbar-expand navbar-darker bg-black shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
+                    <p class="nav-link text-white">{{ config('app.name', 'Laravel') }}
+
+                    </p>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -50,8 +52,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-white"
-                                        href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else

@@ -9,14 +9,14 @@
 @section('content')
     <div class="card-container">
         <div class="row justify-content-center">
-            <div class="col-md-8 text-white">
+            <div class="col text-white">
                 {{-- Titolo --}}
                 <div class=" text-center">
-                    <h1 class="">Benvenuto!</h1>
+                    <h1 class="home-title">Benvenuto!</h1>
                 </div>
                 <div class="d-flex">
 
-                    <div class="justify-center text-center fs-5">
+                    <div class="justify-center text-center fs-3">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -25,7 +25,7 @@
                         {{-- Messaggio centrale homepage --}}
 
                         <div id="body-text">
-                            <p class="mt-4">
+                            <p class="mt-4 paragraph">
                                 Effettua il login per gestire la sezione relativa al tuo
                                 ristorante <br>
                                 oppure registrati

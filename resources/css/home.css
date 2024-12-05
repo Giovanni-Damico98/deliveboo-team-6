@@ -7,7 +7,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("https://img.freepik.com/premium-photo/healthy-food-background-autumn-fresh-vegetables-dark-stone-table-with-copy-space-top-view_127032-1954.jpg?w=740") !important;
+    background-image: url("https://img.freepik.com/premium-photo/healthy-food-background-autumn-fresh-vegetables-dark-stone-table-with-copy-space-top-view_127032-1954.jpg?w=740");
     background-size: cover;
     /* Fa sì che l'immagine copra tutta la pagina */
     background-position: center;
@@ -27,4 +27,12 @@ body {
     background-color: rgba(0, 0, 0, 0.45);
     /* Overlay nero con opacità 45% */
     z-index: 1;
+}
+
+.home-title {
+    font-size: 4rem;
+}
+
+.paragraph {
+    font-size: 2rem;
 }

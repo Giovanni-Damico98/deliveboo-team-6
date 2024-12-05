@@ -142,4 +142,12 @@ class DishController extends Controller
 
         return redirect()->route("admin.dishes.trashed")->with("success" , "Eliminato con Successo");
     }
+
+    public function toggle(Dish $dish)
+{
+    $dish->visible = !$dish->visible;
+    $dish->save();
+
+    return redirect()->route('admin.dishes.index')->with('success', 'Stato del piatto aggiornato con successo.');
+}
 }

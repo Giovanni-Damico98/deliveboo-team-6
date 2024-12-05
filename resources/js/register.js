@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const errorMessageNumber = document.createElement("small");
     const validateNumberMessage = document.getElementById("vat_number")
 
+    //messaggio di errore per le password
+    errorMessagePassword.style.color = "red";
+    errorMessagePassword.style.display = "none";
+    errorMessagePassword.textContent = "Le password non corrispondono.";
+
+    confirmPasswordInput.parentElement.appendChild(errorMessagePassword);
+
+    //messaggio di errore per la P.IVA
     errorMessageNumber.style.color = "red";
     errorMessageNumber.style.display = "none";
     errorMessageNumber.textContent = "La P.IVA non può contenere lettere";
@@ -13,12 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     validateNumberMessage.parentElement.appendChild(errorMessageNumber);
 
 
-    errorMessagePassword.style.color = "red";
-    errorMessagePassword.style.display = "none";
-    errorMessagePassword.textContent = "Le password non corrispondono.";
-
-    confirmPasswordInput.parentElement.appendChild(errorMessagePassword);
-
+    //fuction Password
     function validatePasswords() {
         if (
             passwordInput.value &&
@@ -41,8 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
         errorMessagePassword.style.display = "none";
     });
 
+
+
+
+    //fuction P.IVA
     function validateNumber(){
-        if (isNaN(validateNumberMessage)) {
+        if (isNaN(validateNumberMessage.value)) {
             errorMessageNumber.style.display = "block";
         }
     }

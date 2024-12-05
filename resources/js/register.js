@@ -17,9 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
             passwordInput.value !== confirmPasswordInput.value
         ) {
             errorMessage.style.display = "block";
-        } else {
-            errorMessage.style.display = "none";
         }
+        // else {
+        //     errorMessage.style.display = "none";
+        // }
     }
 
     confirmPasswordInput.addEventListener("blur", validatePasswords);

@@ -10,7 +10,7 @@
         <div class="title">Registrazione</div>
         <div class="register-content">
             <!-- Form di registrazione -->
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Dati dell'utente -->
@@ -87,9 +87,8 @@
                         @enderror
                     </div>
                     <div class="input-box">
-                        <span class="details">Immagine Ristorante - URL</span>
-                        <input id="image" type="url" class="@error('image') is-invalid @enderror" name="image"
-                            value="{{ old('image') }}" placeholder="Inserisci URL">
+                        <span class="details">Immagine Ristorante</span>
+                        <input id="image" type="file" class="@error('image') is-invalid @enderror" name="image" accept="image/*">
                         @error('image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @vite('resources/css/admin/dashboard.css')
 @section('content')
-    <div class="restaurant-card" style="background-image: url('{{ asset($restaurant->image) }}');">
+ <div class="restaurant-card" style="background-image: url('{{ asset('storage/' . $restaurant->image) }}');">
         <div class="restaurant-card-overlay">
             <div class="restaurant-card-content">
                 <h1 class="restaurant-title m-2 fs-1">{{ $restaurant->name }}</h1>

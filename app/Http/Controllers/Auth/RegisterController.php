@@ -53,6 +53,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'restaurant_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'vat_number' => ['required', 'string', 'max:50'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,WEBP', 'max:2048'],
         ]);
     }
 
@@ -71,12 +75,18 @@ class RegisterController extends Controller
         'password' => Hash::make($data['password']),
     ]);
 
+    $imagePath = null;
+    if (isset($data['image'])) {
+        $imagePath = $data['image']->store('restaurant_images', 'public');
+    }
+
+
     // ristorante associato all'utente
     Restaurant::create([
         'name' => $data['restaurant_name'],
         'address' => $data['address'],
         'vat_number' => $data['vat_number'],
-        'image' => $data['image'] ?? null,
+        'image' => $imagePath,
         'user_id' => $user->id,
     ]);
 

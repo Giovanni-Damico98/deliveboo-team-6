@@ -21,6 +21,9 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->timestamps();
         });
+
+
+
     }
 
     /**
@@ -29,5 +32,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('dishes');
+
     }
 };

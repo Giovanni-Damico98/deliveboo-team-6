@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dish extends Model
 {
+    use SoftDeletes;
     // Specifica la tabella associata al Model
     protected $table = 'dishes';
 

@@ -11,25 +11,8 @@
     background-color: #1a1c1c !important;
 }
 
-#app > nav > div > a > img {
-    height: 10vh;
-    width: 8vw;
-    margin: -1rem;
-}
-
-#app > nav {
-    height: 10vh;
-}
 
 .nav-link {
     font-size: 2.5vh;
     margin: 1vw;
-}
-
-/* media query mobile */
-@media (max-width: 425px) {
-    #app > nav > div > a > img {
-        height: 9.9vh;
-        width: 25vw;
-    }
 }

@@ -2,7 +2,7 @@
 {{-- collego il file home.scss per l'estetica di home.blade.php --}}
 @vite('resources/css/home.css')
 {{-- collego il file home.js per le animazioni di home.blade.php --}}
-@vite('resources/js/home.js')
+{{-- @vite('resources/js/home.js') --}}
 
 
 

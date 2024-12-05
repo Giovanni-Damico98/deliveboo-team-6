@@ -20,29 +20,24 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-darker bg-black shadow-sm">
-            <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <p class="nav-link text-white">{{ config('app.name', 'Laravel') }}
 
-                    </p>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-sm">
+            <div class="container">
+
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -80,6 +75,7 @@
                 </div>
             </div>
         </nav>
+
 
         <main class="">
             @yield('content')

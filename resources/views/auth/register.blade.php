@@ -28,7 +28,7 @@
                     </div>
                     <div class="input-box">
                         <span class="details">E-mail</span>
-                        <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"
+                        <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"  size="30"
                             value="{{ old('email') }}" placeholder="Inserisci la mail" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">

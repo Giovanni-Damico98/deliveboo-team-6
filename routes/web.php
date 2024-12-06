@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+
+Route::get('register', [RegisterController::class , "index"])->name("register");
+Route::post('register', [RegisterController::class , "register"]);
+
 
 Auth::routes();
 Route::prefix('/admin')->group(function () {

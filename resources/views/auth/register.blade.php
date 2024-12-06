@@ -93,10 +93,10 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="categories" class="form-label fw-bold">Categoria ristorante</label>
+                            <select id="categories" multiple="multiple"
+                            class="form-control @error('categories') is-invalid @enderror" name="categories">
                             @foreach ( $categories as $category )
-                            <label for="select" class="form-label fw-bold">Categoria ristorante</label>
-                            <input id="select" type="select" multiple="multiple"
-                                class="form-control @error('category_name') is-invalid @enderror" name="category_name">
                                 <option value="{{ $category->id}}">{{ $category->name}}</option>
                             @endforeach
                             @error('category_name')

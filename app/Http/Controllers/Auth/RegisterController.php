@@ -58,6 +58,7 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'vat_number' => ['required', 'string' , "numeric"],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,WEBP', 'max:2048'],
+            'categories' => ['required']
         ]);
     }
 
@@ -83,7 +84,7 @@ class RegisterController extends Controller
 
 
     // ristorante associato all'utente
-    Restaurant::create([
+    $restaurant = Restaurant::create([
         'name' => $data['restaurant_name'],
         'address' => $data['address'],
         'vat_number' => $data['vat_number'],
@@ -91,11 +92,12 @@ class RegisterController extends Controller
         'user_id' => $user->id,
     ]);
 
+    $restaurant->categories()->sync($data["categories"]);
     return $user;
 }
-    protected function index() {
+    public function index() {
         $categories = Category::all();
 
-     return compact("categories");
+     return view("auth.register " ,compact("categories"));
     }
 }

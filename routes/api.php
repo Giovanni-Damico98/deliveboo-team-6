@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -24,3 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // /api/{nome della route} per ricevere l'end-point
 Route::get("/restaurants" , [RestaurantController::class , "index"])->name("api.restaurants.index");
 Route::get("/category" , [CategoryController::class , "index"])->name("api.category.index");
+
+// Rotta per l'esposizione dell'api per dishes
+Route::get("/dishes", [DishController::class, "index"])->name("api.dishes.index");

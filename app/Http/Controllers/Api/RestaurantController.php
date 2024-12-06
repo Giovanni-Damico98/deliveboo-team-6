@@ -8,16 +8,22 @@ use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
-    // metodo index per creare l'end point
-    public function index(){
-        $restaurants = Restaurant::all();
+    // Metodo index per creare l'endpoint
+    public function index()
+    {
+        $restaurants = Restaurant::all()->map(function ($restaurant) {
+
+            $restaurant->image = $restaurant->image
+            ? url('storage/' . $restaurant->image)
+            : null;
+            return $restaurant;
+        });
 
         return response()->json(
             [
                 "success" => true,
                 "results" => $restaurants,
             ]
-            );
+        );
     }
-
 }

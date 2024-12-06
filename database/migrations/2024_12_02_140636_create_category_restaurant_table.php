@@ -13,9 +13,17 @@ return new class extends Migration
     {
 
         Schema::create('category_restaurant', function (Blueprint $table) {
-            $table->foreignId('categories_id')->constrained()->onDelete('cascade');
-            $table->foreignId('restaurant_id')->constrained()->onDelete('cascade');
-            $table->primary(['categories_id', 'restaurant_id']);
+
+
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('restaurant_id');
+            $table->string('category');
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            $table->primary(['company_id','respondent_id','category']);
+
+
         });
 
     }

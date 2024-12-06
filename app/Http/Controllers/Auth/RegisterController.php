@@ -92,6 +92,7 @@ class RegisterController extends Controller
         'user_id' => $user->id,
     ]);
 
+
     return $user;
 }
     public function showRegistrationForm()

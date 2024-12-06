@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Category;
 use App\Models\Restaurant;
 use App\Models\Dish;
 use App\Models\User;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RestaurantSeeder::class,
             DishSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }

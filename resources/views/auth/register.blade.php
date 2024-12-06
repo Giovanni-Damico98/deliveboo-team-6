@@ -91,6 +91,18 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="col-md-6">
+                            @foreach ( $categories as $category )
+                            <label for="select" class="form-label fw-bold">Categoria ristorante</label>
+                            <input id="select" type="select" multiple="multiple"
+                                class="form-control @error('category_name') is-invalid @enderror" name="category_name">
+                                <option value="{{ $category->id}}">{{ $category->name}}</option>
+                            @endforeach
+                            @error('category_name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
                     <p class="text-muted text-center">* Tutti i campi sono obbligatori</p>

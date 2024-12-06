@@ -49,7 +49,16 @@ class RestaurantController extends Controller
 
         $restaurant->fill($formData);
         $restaurant->user_id = $formData['user_id'];
+
+
+        if(isset($formData["categories"])){
+            $restaurant->categories()->sync($formData["categories"]);
+        } else {
+            $restaurant->categories()->detach();
+        };
+
         $restaurant->save();
+
     }
 
     /**

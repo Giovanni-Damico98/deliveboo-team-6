@@ -121,7 +121,7 @@ class DishController extends Controller
         if ($request->hasFile('image')) {
             // Elimina l'immagine precedente se esiste
             if ($dish->image) {
-                \Storage::disk('public')->delete($dish->image);
+                Storage::disk('public')->delete($dish->image);
             }
 
             // Salva la nuova immagine

@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory;
-    public function restaurants(){
+    // Specifica la tabella associata al Model
+    protected $table = 'categories';
+
+    public function restaurants()
+    {
         return $this->belongsToMany(Restaurant::class);
     }
 

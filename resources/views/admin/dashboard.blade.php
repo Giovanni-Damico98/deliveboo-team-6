@@ -15,12 +15,12 @@
                             <p class="mb-0">P. IVA:</p>
                             <strong>{{ $restaurant->vat_number }}</strong>
                         </div>
+                        <p class="mb-0">Categorie:</p>
                         @foreach ($restaurant->categories as $item)
+                            <div>
+                                <strong>{{ $item->name }}</strong>
+                            </div>
                         @endforeach
-                        <div>
-                            <p class="mb-0">Categorie:</p>
-                            <strong>{{ $item->name }}</strong>
-                        </div>
                         <div>
                             <p class="mb-0">Indirizzo:</p>
                             <strong>{{ $restaurant->address }}</strong>

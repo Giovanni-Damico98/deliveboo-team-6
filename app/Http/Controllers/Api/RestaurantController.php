@@ -16,7 +16,6 @@ class RestaurantController extends Controller
             [
                 "success" => true,
                 "results" => $restaurants,
-
             ]
             );
     }

@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+// /api/{nome della route} per ricevere l'end-point
 Route::get("/restaurants" , [RestaurantController::class , "index"])->name("api.restaurants.index");

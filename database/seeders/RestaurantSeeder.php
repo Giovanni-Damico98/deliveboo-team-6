@@ -19,7 +19,7 @@ class RestaurantSeeder extends Seeder
             "name" => "Dar Bottarolo",
             "address" => "Via le mani dal naso 1",
             "vat_number" => 123567345612,
-            "image" => "https://darbottarolo.it/wp-content/uploads/2023/02/WhatsApp-Image-2023-02-15-at-15.43.41.jpeg",
+            "image" => "restaurant_images/WhatsApp-Image-2023-02-15-at-15.43.41.webp",
             "user_id" => 1,
         ]
 

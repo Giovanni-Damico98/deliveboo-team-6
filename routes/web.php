@@ -22,8 +22,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('register', [RegisterController::class , "showRegistrationForm"])->name("register");
-Route::post('register', [RegisterController::class , "register"]);
+// Route::get('register', [RegisterController::class , "showRegistrationForm"])->name("register");
+// Route::post('register', [RegisterController::class , "register"]);
 
 
 Auth::routes();

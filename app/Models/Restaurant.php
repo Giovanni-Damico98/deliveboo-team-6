@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
 class Restaurant extends Model
 {
     // Specifica la tabella associata al Model
@@ -30,6 +31,6 @@ class Restaurant extends Model
     }
 
     public function categories(){
-        return $this->belongsToMany(Category::class)->withPivot('category');
+        return $this->belongsToMany(Category::class);
     }
 }

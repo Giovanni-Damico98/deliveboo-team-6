@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // /api/{nome della route} per ricevere l'end-point
 Route::get("/restaurants" , [RestaurantController::class , "index"])->name("api.restaurants.index");
+Route::get("/category" , [CategoryController::class , "index"])->name("api.category.index");

@@ -11,11 +11,12 @@ class RestaurantController extends Controller
     // Metodo index per creare l'endpoint
     public function index()
     {
-        $restaurants = Restaurant::all()->map(function ($restaurant) {
+        //  recupero i ristoranti con le categorie associate
+        $restaurants = Restaurant::with('categories')->get()->map(function ($restaurant) {
 
             $restaurant->image = $restaurant->image
-            ? url('storage/' . $restaurant->image)
-            : null;
+                ? url('storage/' . $restaurant->image)
+                : null;
             return $restaurant;
         });
 

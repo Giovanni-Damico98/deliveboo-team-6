@@ -93,16 +93,25 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="categories" class="form-label fw-bold">Categoria ristorante</label>
-                            <select id="categories" multiple="multiple" class="form-control @error('categories') is-invalid @enderror" name="categories[]">
-                            @foreach ( $categories as $category )
-                                <option value="{{ $category->id}}">{{ $category->name}}</option>
-                            @endforeach
-                            </select>
-                            @error('categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <label class="form-label fw-bold">Categoria ristorante</label>
+                            <button type="button" class="btn btn-primary mb-3" id="show-categories-btn">
+                                Seleziona Categorie
+                            </button>
 
+                            <div id="categories-container" class="d-none">
+                                @foreach ($categories as $category)
+                                    <div class="form-check">
+                                        <input type="checkbox" id="category-{{ $category->id }}" name="categories[]" value="{{ $category->id }}" class="form-check-input @error('categories') is-invalid @enderror"
+                                            {{ (is_array(old('categories')) && in_array($category->id, old('categories'))) ? 'checked' : '' }}>
+                                        <label for="category-{{ $category->id }}" class="form-check-label">
+                                            {{ $category->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                                @error('categories')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 

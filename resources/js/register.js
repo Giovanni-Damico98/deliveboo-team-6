@@ -59,4 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
     validateNumberMessage.addEventListener("input", function () {
         errorMessageNumber.style.display = "none";
     });
+
+
+    const button = document.getElementById("show-categories-btn");
+    const categoriesContainer = document.getElementById("categories-container");
+
+    button.addEventListener("click", function () {
+        categoriesContainer.classList.toggle("d-none");
+    });
 });

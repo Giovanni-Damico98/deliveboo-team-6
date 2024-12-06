@@ -95,9 +95,10 @@ class RegisterController extends Controller
     $restaurant->categories()->sync($data["categories"]);
     return $user;
 }
-    public function index() {
+    public function showRegistrationForm()
+    {
         $categories = Category::all();
 
-     return view("auth.register " ,compact("categories"));
+        return view("auth.register " ,compact("categories"));
     }
 }

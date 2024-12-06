@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('register', [RegisterController::class , "index"])->name("register");
+Route::get('register', [RegisterController::class , "showRegistrationForm"])->name("register");
 Route::post('register', [RegisterController::class , "register"]);
 
 

@@ -94,14 +94,15 @@
 
                         <div class="col-md-6">
                             <label for="categories" class="form-label fw-bold">Categoria ristorante</label>
-                            <select id="categories" multiple="multiple"
-                            class="form-control @error('categories') is-invalid @enderror" name="categories">
+                            <select id="categories" multiple="multiple" class="form-control @error('categories') is-invalid @enderror" name="categories[]">
                             @foreach ( $categories as $category )
                                 <option value="{{ $category->id}}">{{ $category->name}}</option>
                             @endforeach
-                            @error('category_name')
+                            </select>
+                            @error('categories')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+
                         </div>
                     </div>
 

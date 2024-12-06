@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'restaurant_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'vat_number' => ['required', 'string' , "numeric"],
+            'vat_number' => ['required', 'string', "numeric"],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,WEBP', 'max:2048'],
             'categories' => ['required']
         ]);
@@ -69,36 +69,42 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-{
-    // dati di creazione per l'utente
-    $user = User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-    ]);
+    {
+        // dati di creazione per l'utente
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
 
-    $imagePath = null;
-    if (isset($data['image'])) {
-        $imagePath = $data['image']->store('restaurant_images', 'public');
+        $imagePath = null;
+        if (isset($data['image'])) {
+            $imagePath = $data['image']->store('restaurant_images', 'public');
+        }
+
+
+        // ristorante associato all'utente
+        $restaurant = Restaurant::create([
+            'name' => $data['restaurant_name'],
+            'address' => $data['address'],
+            'vat_number' => $data['vat_number'],
+            'image' => $imagePath,
+            'user_id' => $user->id,
+        ]);
+
+        // associo le categorie selezionate dall'utente all'id del ristorante appena creato nella
+        // tabella pivot category_restaurant
+        if (isset($data['categories'])) {
+            $restaurant->categories()->sync($data['categories']);
+        }
+
+
+        return $user;
     }
-
-
-    // ristorante associato all'utente
-    $restaurant = Restaurant::create([
-        'name' => $data['restaurant_name'],
-        'address' => $data['address'],
-        'vat_number' => $data['vat_number'],
-        'image' => $imagePath,
-        'user_id' => $user->id,
-    ]);
-
-
-    return $user;
-}
     public function showRegistrationForm()
     {
         $categories = Category::all();
 
-        return view("auth.register " ,compact("categories"));
+        return view("auth.register", compact("categories"));
     }
 }

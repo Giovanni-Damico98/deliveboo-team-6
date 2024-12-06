@@ -12,14 +12,15 @@ class RestaurantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Category $category, Restaurant $restaurant)
     {
         $restaurant = Restaurant::where('user_id', auth()->id())->first();
+        $restaurantCategories = Restaurant::with('categories')->findOrFail($category);
 
         if (!$restaurant) {
             return redirect()->route('restaurant.create')->with('message', 'Per favore crea prima il tuo ristorante');
         }
-        return view('admin.dashboard', compact('restaurant'));
+        return view('admin.dashboard', compact('restaurant', 'restaurantCategories'));
     }
 
     /**
@@ -53,7 +54,6 @@ class RestaurantController extends Controller
 
 
         $restaurant->save();
-
     }
 
     /**

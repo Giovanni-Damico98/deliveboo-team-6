@@ -46,12 +46,12 @@ class RestaurantController extends Controller
             'user_id' => 'required|string',
         ]);
 
+        $categories = Category::all();
         $restaurant = new Restaurant();
 
         $restaurant->fill($formData);
+        $restaurant->category()->attach($categories);
         $restaurant->user_id = $formData['user_id'];
-
-
         $restaurant->save();
 
     }
@@ -78,6 +78,8 @@ class RestaurantController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $categories = Category::all();
+        $restaurant = Restaurant::all();
     }
 
     /**

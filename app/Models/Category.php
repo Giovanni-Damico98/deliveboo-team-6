@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     public function restaurants(){
-        return $this->belongsToMany(Restaurant::class)->withPivot('category');
+        return $this->belongsToMany(Restaurant::class)->withPivot('category_restaurant','restaurant_id', 'category_id');
     }
 
     protected $fillable = [

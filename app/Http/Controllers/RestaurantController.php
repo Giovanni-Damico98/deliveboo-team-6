@@ -16,7 +16,7 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::where('user_id', auth()->id())->first();
         $restaurantCategories = Restaurant::with('categories')->findOrFail($category);
-
+        // test
         if (!$restaurant) {
             return redirect()->route('restaurant.create')->with('message', 'Per favore crea prima il tuo ristorante');
         }

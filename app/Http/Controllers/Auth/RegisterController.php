@@ -51,15 +51,35 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'restaurant_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'vat_number' => ['required', 'string', "numeric"],
+            'vat_number' => ['required', 'string', "numeric" , "max:20"],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,WEBP', 'max:2048'],
             'categories' => ['required']
-        ]);
+        ],
+        [
+            'name.max' => 'Il nome non deve contenere più di 50 caratteri',
+            'name.required' => 'Il nome è obbligatorio',
+            'email.required' => 'Lemail è obbligatoria',
+            'email.email' => 'L email deve essere valida',
+            'email.unique' => 'L email è già stata utillizata',
+            'password.required' => 'La password è obbligatoria',
+            'password.min' => 'La password deve essere più lunga di 8 caratteri',
+            'password.confirmed' => 'Le password devono corrispondere',
+            'restaurant_name.required' => 'Il nome deve essere obbligatorio',
+            'address.required' => 'L indirizzo è obbligatorio',
+            'vat_number.required'=> 'La P.IVA è obbligatoria',
+            'vat_number.numeric' => 'La P.IVA non può contenere caratteri',
+            'vat_number.max' => 'La P.IVA non può essere più lunga di 11 caratteri',
+            'image.required' => 'Un immagine è obbligatoria',
+            'image.image' => 'Deve essere un immagine',
+            'image.mimes' => 'Il formato non viene supportato',
+            'categories.required' => 'Scegli una categoria',
+        ],
+    );
     }
 
     /**

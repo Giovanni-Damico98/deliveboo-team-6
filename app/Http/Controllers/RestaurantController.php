@@ -45,7 +45,8 @@ class RestaurantController extends Controller
             'vat_number' => 'required|bigInteger',
             'image' => 'required|url:http,https',
             'user_id' => 'required|string',
-        ]);
+        ],
+    );
 
         $restaurant = new Restaurant();
 

@@ -52,11 +52,18 @@ class DishController extends Controller
 {
 
     $formData = $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
+        'name' => 'required|string|max:50',
+        'description' => 'nullable|string|max:255',
         'price' => 'required|numeric|min:0.10|max:999',
         'visible' => 'required|boolean',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+    ], [
+        'name.max' => 'La lunghezza del nome deve avere massimo 50 caratteri',
+        'description.max' => 'La lunghezza della descrizione deve avere massimo 255 caratteri',
+        'price.min' => 'Il prezzo non deve essere inferiore a 0 euro',
+        'price.max' => 'Il prezzo non deve essere superiore a 999 euro',
+        'visible.boolean' => 'È necessario selezionare la disponibilità del piatto',
+        'image.max' => 'Il file non deve superare i 2048mb',
     ]);
 
     $restaurant = Restaurant::where('user_id', auth()->id())->first();

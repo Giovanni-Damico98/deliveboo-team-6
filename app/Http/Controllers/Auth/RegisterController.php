@@ -51,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'restaurant_name' => ['required', 'string', 'max:255'],
@@ -59,6 +59,9 @@ class RegisterController extends Controller
             'vat_number' => ['required', 'string', "numeric"],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,WEBP', 'max:2048'],
             'categories' => ['required']
+        ], [
+            'name.required' => 'il nome è obblogatorio',
+            'name.max' => 'Il nome non deve superare i 50 caratteri',
         ]);
     }
 

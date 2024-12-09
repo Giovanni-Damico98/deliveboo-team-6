@@ -10,7 +10,15 @@ class DishController extends Controller
 {
     //
     public function index(){
-        $dishes = Dish::all();
+        $dishes = Dish::all()->map(function ($dish) {
+
+            $dish->image = $dish->image
+            ? url('storage/' . $dish->image)
+            : null;
+            return $dish;
+        });
+
+
 
         return response()->json(
             [

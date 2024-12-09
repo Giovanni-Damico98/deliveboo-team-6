@@ -14,8 +14,9 @@ class RestaurantController extends Controller
         //  recupero i ristoranti con le categorie associate
         $restaurants = Restaurant::with('categories')->get()->map(function ($restaurant) {
 
-            $restaurant->image = $restaurant->image
-                ? url('storage/' . $restaurant->image)
+            $restaurantData = $restaurant->toArray();
+            $restaurantData['image'] = $restaurant->image
+                ? asset('storage/' . $restaurant->image)
                 : null;
             return $restaurant;
         });

@@ -1,0 +1,9 @@
+.custom-img {
+    max-width: 200px;
+    height: auto;
+}
+
+.custom-td {
+    max-width: 100px;
+    min-width: 100px;
+}

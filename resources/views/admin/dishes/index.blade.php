@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @vite('resources/js/delete.js')
+@vite('resources/css/dashboard/index.css')
 
 @section('content')
     <div class="container mt-4">
@@ -20,8 +21,8 @@
                     <table class="table table-dark table-hover table-bordered">
                         <thead>
                             <tr>
+                                <th>Immagine</th>
                                 <th>Nome</th>
-                                <th class="d-none d-md-table-cell">Descrizione</th>
                                 <th>Prezzo</th>
                                 <th>Disponibile</th>
                                 <th class="text-center">Azioni</th>
@@ -30,8 +31,11 @@
                         <tbody>
                             @foreach ($dishes as $dish)
                                 <tr>
+                                    <td class="custom-td text-center px-2" >
+                                        <img src="{{ $dish->image }}" alt="{{$dish->name}}" class="custom-img img-fluid">
+                                        </img>
+                                    </td>
                                     <td>{{ $dish->name }}</td>
-                                    <td class="d-none d-md-table-cell">{{ $dish->description }}</td>
                                     <td>€{{ number_format($dish->price, 2) }}</td>
                                     <td class="text-center">
                                         @if ($dish->visible)

@@ -11,6 +11,7 @@
         @if ($dishes->count() > 0)
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="text-black">Gestione Piatti</h1>
+            <h1 class="text-black">Piatti trovati {{$dishes->count()}}</h1>
         </div>
         <div class="card bg-dark text-white">
             <div class="card-header">

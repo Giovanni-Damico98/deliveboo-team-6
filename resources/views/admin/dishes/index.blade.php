@@ -18,12 +18,12 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-dark table-hover table-bordered">
+                    <table class="table table-dark table-bordered">
                         <thead>
                             <tr>
                                 <th>Immagine</th>
                                 <th>Nome</th>
-                                <th class="d-none d-md-block">Prezzo</th>
+                                <th>Prezzo</th>
                                 <th>Disponibile</th>
                                 <th class="text-center">Azioni</th>
                             </tr>
@@ -35,13 +35,13 @@
                                         <img src="{{ asset("storage/". $dish->image)  }}" alt="{{$dish->name}}" class="custom-img img-fluid">
                                         </img>
                                     </td>
-                                    <td>{{ $dish->name }}</td>
-                                    <td class="d-none d-md-block">€{{ number_format($dish->price, 2) }}</td>
-                                    <td class="text-center">
+                                    <td class="align-middle">{{ $dish->name }}</td>
+                                    <td class="align-middle">€{{ number_format($dish->price, 2) }}</td>
+                                    <td class="text-center align-middle">
                                         @if ($dish->visible)
-                                            <span class="badge bg-success">Disponibile</span>
+                                            <span class="badge bg-success fs-5">Disponibile</span>
                                         @else
-                                            <span class="badge bg-danger">Non disponibile</span>
+                                            <span class="badge bg-danger fs-5">Non disponibile</span>
                                         @endif
                                     </td>
                                     <td class="text-center align-middle">

@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'image.required' => 'Un immagine è obbligatoria',
             'image.image' => 'Deve essere un immagine',
             'image.mimes' => 'Il formato non viene supportato',
-            'categories.required' => 'Scegli una categoria',
+            'categories.required' => 'Scegli almeno una categoria',
         ],
     );
     }

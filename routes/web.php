@@ -53,7 +53,7 @@ Route::prefix("/admin")->name("admin.")->group(function () {
     Route::patch("/dishes/{id}/restore", [DishController::class, "restore"])->name("dishes.restore");
     Route::delete("/dishes/{id}/force-delete", [DishController::class, "forceDelete"])->name("dishes.forceDelete");
 
-    Route::get('/dishes/{dish}/toggle', [DishController::class, 'toggle'])->name('dishes.toggle');
+    Route::post('/dishes/{dish}/toggle', [DishController::class, 'toggle'])->name('dishes.toggle');
 });
 
 // uri: -> Uniform Resource Identifier

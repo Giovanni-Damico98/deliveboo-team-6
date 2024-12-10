@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-@vite('resources/js/delete.js')
 @vite('resources/css/dashboard/index.css')
 
 @section('content')
@@ -24,7 +23,7 @@
                             <tr>
                                 <th>Immagine</th>
                                 <th>Nome</th>
-                                <th>Prezzo</th>
+                                <th class="d-none d-md-block">Prezzo</th>
                                 <th>Disponibile</th>
                                 <th class="text-center">Azioni</th>
                             </tr>
@@ -37,7 +36,7 @@
                                         </img>
                                     </td>
                                     <td>{{ $dish->name }}</td>
-                                    <td>€{{ number_format($dish->price, 2) }}</td>
+                                    <td class="d-none d-md-block">€{{ number_format($dish->price, 2) }}</td>
                                     <td class="text-center">
                                         @if ($dish->visible)
                                             <span class="badge bg-success">Disponibile</span>
@@ -53,31 +52,80 @@
                                             </a>
 
                                             @if ($dish->visible)
-                                                <a href="{{ route('admin.dishes.toggle', $dish->id) }}"
-                                                    class="btn btn-secondary btn-sm w-100">
+                                            <button class="btn btn-secondary btn-sm w-100 " data-bs-toggle="modal" data-bs-target="#toggleMenuModal-{{$dish->id}}">
                                                     <i class="bi bi-eye-slash"></i> Metti fuori menù
-                                                </a>
+                                                </button>
                                             @else
-                                                <a href="{{ route('admin.dishes.toggle', $dish->id) }}"
+                                                <button data-bs-toggle="modal" data-bs-target="#toggleMenuModal-{{$dish->id}}"
                                                     class="btn btn-primary btn-sm w-100">
                                                     <i class="bi bi-eye"></i> Inserisci nel menù
-                                                </a>
+                                                </button>
                                             @endif
-
                                             <button class="btn btn-danger btn-sm w-100"
-                                                onclick="confirmDelete({{ $dish->id }})">
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal-{{$dish->id}}">
                                                 <i class="bi bi-trash"></i> Elimina
                                             </button>
-
-                                            <form id="delete-form-{{ $dish->id }}"
-                                                action="{{ route('admin.dishes.delete', $dish->id) }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
                                         </div>
                                     </td>
                                 </tr>
+                            <!-- Modal Elimination -->
+                            <div class="modal fade text-dark" id="deleteModal-{{$dish->id}}" tabindex="-1" aria-labelledby="deleteModalLabel-{{$dish->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="deleteModal-{{$dish->id}}">Conferma Eliminazione</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                     Sei sicuro di voler eliminare il piatto {{$dish->name}}
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <form id="delete-form-{{ $dish->id }}"
+                                        action="{{ route('admin.dishes.delete', $dish->id) }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Modal Toggle visibility -->
+                            <div class="modal fade text-dark" id="toggleMenuModal-{{$dish->id}}" tabindex="-1" aria-labelledby="toggleMenuModalLabel-{{$dish->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="toggleMenuModalLabel-{{$dish->id}}">Conferma Cambio</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                         @if ($dish->visible)
+                                             Sei sicuro di voler mettere il piatto {{ $dish->name }} fuori dal menù?
+                                         @else
+                                            Sei sicuro di voler inserire il piatto {{ $dish->name }} nel menù?
+                                         @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <form action="{{ route('admin.dishes.toggle', $dish->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            @if ($dish->visible)
+                                                Metti fuori menù
+                                            @else
+                                                Inserisci nel menù
+                                            @endif
+                                        </button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
                             @endforeach
                         </tbody>
                     </table>

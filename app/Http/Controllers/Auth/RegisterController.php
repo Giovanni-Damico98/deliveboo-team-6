@@ -56,8 +56,8 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'restaurant_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'vat_number' => ['required', 'string', "numeric" , "max:20"],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,WEBP', 'max:2048'],
+            'vat_number' => ['required', 'string', "max:15"],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'categories' => ['required']
         ],
         [
@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'address.required' => 'L\'indirizzo è obbligatorio',
             'vat_number.required'=> 'La P.IVA è obbligatoria',
             'vat_number.numeric' => 'La P.IVA non può contenere caratteri',
-            'vat_number.max' => 'La P.IVA non può essere più lunga di 11 caratteri',
+            'vat_number.max' => 'La P.IVA non può essere più lunga di 15 caratteri',
             'image.required' => 'Un immagine è obbligatoria',
             'image.image' => 'Deve essere un immagine',
             'image.mimes' => 'Il formato non viene supportato',

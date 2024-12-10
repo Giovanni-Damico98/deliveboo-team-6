@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="image" class="form-label fw-bold">Immagine Ristorante</label>
+                            <label for="image" class="form-label fw-bold">Immagine Ristorante [Massimo 2mb]</label>
                             <input id="image" type="file"
                                 class="form-control @error('image') is-invalid @enderror" name="image" accept="image/*">
                             @error('image')

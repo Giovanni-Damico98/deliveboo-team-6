@@ -9,22 +9,30 @@ use Illuminate\Http\Request;
 class RestaurantController extends Controller
 {
     // Metodo index per creare l'endpoint
-    public function index()
+    public function index(Request $request)
     {
-        //  recupero i ristoranti con le categorie associate
-        $restaurants = Restaurant::with('categories')->get()->map(function ($restaurant) {
+        $query = Restaurant::with('categories');
 
-            $restaurant->image = $restaurant->image
-                ? url('storage/' . $restaurant->image)
-                : null;
+        //controllo che siano state selezionate uno o piu categorie
+        if ($request->has('categories') && is_array($request->categories)) {
+            $categories = $request->categories;
+
+            //filtro i ristoranti in base alle categorie che vengono ricercate
+            $query->whereHas('categories', function ($q) use ($categories) {
+                $q->whereIn('categories.id', $categories);
+            }, '=', count($categories));
+        }
+
+        $restaurants = $query->get();
+
+        $restaurants->map(function ($restaurant) {
+            $restaurant->image = $restaurant->image ? url('storage/' . $restaurant->image) : null;
             return $restaurant;
         });
 
-        return response()->json(
-            [
-                "success" => true,
-                "results" => $restaurants,
-            ]
-        );
+        return response()->json([
+            "success" => true,
+            "results" => $restaurants,
+        ]);
     }
 }

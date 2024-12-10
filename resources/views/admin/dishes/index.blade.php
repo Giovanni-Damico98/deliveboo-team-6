@@ -4,14 +4,15 @@
 
 @section('content')
     <div class="container mt-4">
-
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-black">Gestione Piatti</h1>
+        <div class="text-center">
             <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Aggiungi Nuovo Piatto
             </a>
         </div>
-
+        @if ($dishes->count() > 0)
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-black">Gestione Piatti</h1>
+        </div>
         <div class="card bg-dark text-white">
             <div class="card-header">
                 <h5 class="card-title mb-0">Lista Piatti</h5>
@@ -32,7 +33,7 @@
                             @foreach ($dishes as $dish)
                                 <tr>
                                     <td class="custom-td text-center px-2" >
-                                        <img src="{{ $dish->image }}" alt="{{$dish->name}}" class="custom-img img-fluid">
+                                        <img src="{{ asset("storage/". $dish->image)  }}" alt="{{$dish->name}}" class="custom-img img-fluid">
                                         </img>
                                     </td>
                                     <td>{{ $dish->name }}</td>
@@ -44,7 +45,7 @@
                                             <span class="badge bg-danger">Non disponibile</span>
                                         @endif
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center align-middle">
                                         <div class="d-flex flex-column align-items-center gap-2">
                                             <a href="{{ route('admin.dishes.edit', $dish->id) }}"
                                                 class="btn btn-warning btn-sm w-100">
@@ -83,5 +84,8 @@
                 </div>
             </div>
         </div>
+        @else
+        <h5 class="text-center my-3">Non hai ancora inserito dei piatti...</h5>
     </div>
+    @endif
 @endsection

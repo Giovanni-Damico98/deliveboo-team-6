@@ -6,3 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 });
+
+const deleteConfirm = document.getElementById('')
+const deleteButton = document.getElementById(`delete-form-${dishId}`);
+
+myModal.addEventListener('shown.bs.modal', () => {
+  deleteButton.focus()
+})

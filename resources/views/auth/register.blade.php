@@ -108,10 +108,10 @@
                                         </label>
                                     </div>
                                 @endforeach
-                                @error('categories')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
                             </div>
+                            @error('categories')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 

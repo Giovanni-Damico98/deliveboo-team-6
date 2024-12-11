@@ -32,7 +32,7 @@
                             <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#{{-- {{ route('admin.orders.index') }} --}}">Ordini</a>
+                            <a class="nav-link" href="{{ route('admin.orders.index') }}">Ordini</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#{{-- {{ route('admin.statistics') }} --}}">Statistiche</a>

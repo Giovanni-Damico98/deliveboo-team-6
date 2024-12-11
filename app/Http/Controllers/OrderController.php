@@ -12,13 +12,8 @@ class OrderController extends Controller
     //
     public function index(Order $orders, Dish $dishes){
 
-        $orders = Order::with('dishes')->findOrFail($dishes);
+        $orders = Order::with('dishes')->get();
 
-        if (isset($orders['dishes'])){
-          $orders->dishes()->sync($orders['dishes']);
-        } else{
-              $orders->dishes()->detach();
-        }
 
         return view('admin.orders.index' , compact('orders'));
 

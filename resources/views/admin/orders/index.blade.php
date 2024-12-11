@@ -4,17 +4,11 @@
 
 <div class="container">
     <h1 class="text-center">Ordini</h1>
-    @if ($orders->isEmpty())
-        <p>Nessun Ordine ricevuto</p>
-    @else
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Ordine:
-                </th>
-                <th>
-                    Quantità:
+                    Ordine numero:
                 </th>
                 <th>
                     Nome cliente:
@@ -28,37 +22,46 @@
                 <th>
                     Note:
                 </th>
+                <th>
+                    Prezzo totale (€)
+                </th>
+                <th>
+                    Piatti ordinati:
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach ($orders as $order )
+            @php
+                $dishesCount = [];
+                foreach ( $order->dishes as $dish ){
+                    $dishesCount [$dish->id] [] = $dish;
+                }
+            @endphp
             <tr>
-              <td>{{ $order->dishes->name }}</td>
-              <td>{{ $dish->description }}</td>
-              <td>{{ $dish->price }}</td>
-              <td>{{ $dish->deleted_at }}</td>
-              <td>
-                <form action="{{ route("admin.dishes.restore" , $dish->id )}}" method="POST">
-                    @csrf
-                    @method("PATCH")
-                    <button class="btn btn-success btn-sm">
-                        Ripristina
-                    </button>
-                </form>
-                <form action="{{ route("admin.dishes.forceDelete" , $dish->id )}}" method="POST">
-                    @csrf
-                    @method("DELETE")
-                    <button class="btn btn-danger btn-sm">
-                        Cancella
-                    </button>
-                </form>
+                <td>{{ $order->id }}</td>
+                <td>{{ $order->firstname }}  {{$order->lastname}}</td>
+                <td>{{$order->address}}</td>
+                <td>{{ $order->phone_number }}</td>
+                <td>{{ $order->note }}</td>
+                <td>{{number_format($order->total_price , 2 , '.' , '' ) }}</td>
+                <td>
+                    <ul>
+                        @foreach ($dishesCount as $dishId => $dishesGroup)
+                            @php
+                                $dishName = $dishesGroup[0]->name;
+                                $quantity = count($dishesGroup)
+                            @endphp
+                        <li>
+                            {{ $dishName }} x {{$quantity}}
+                        </li>
+                        @endforeach
+                    </ul>
 
-              </td>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    @endif
-
 </div>
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -55,5 +56,7 @@ Route::prefix("/admin")->name("admin.")->group(function () {
 
     Route::post('/dishes/{dish}/toggle', [DishController::class, 'toggle'])->name('dishes.toggle');
 });
+
+Route::get("/admin/orders", [OrderController::class, "index"])->name("admin.orders.index");
 
 // uri: -> Uniform Resource Identifier

@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Restaurant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use App\Models\Restaurant;
+
 
 class RestaurantSeeder extends Seeder
 {
@@ -32,6 +34,7 @@ class RestaurantSeeder extends Seeder
             $newRestaurant->vat_number = $restaurant["vat_number"];
             $newRestaurant->image = $restaurant["image"];
             $newRestaurant->user_id = $restaurant["user_id"];
+            $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
             $newRestaurant->save();
         }
     }

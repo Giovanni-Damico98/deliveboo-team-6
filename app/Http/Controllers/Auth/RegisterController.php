@@ -108,6 +108,7 @@ class RegisterController extends Controller
             'name' => $data['restaurant_name'],
             'address' => $data['address'],
             'vat_number' => $data['vat_number'],
+            'slug' => $data['restaurant_name'],
             'image' => $imagePath,
             'user_id' => $user->id,
         ]);

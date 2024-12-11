@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Restaurant;
+use App\Models\Category;
 use App\Models\User;
 
 class RestaurantController extends Controller
@@ -52,7 +53,7 @@ class RestaurantController extends Controller
 
         $restaurant->fill($formData);
         $restaurant->user_id = $formData['user_id'];
-
+        $restaurant->slug = Str::slug($formData['name']);
 
         $restaurant->save();
     }

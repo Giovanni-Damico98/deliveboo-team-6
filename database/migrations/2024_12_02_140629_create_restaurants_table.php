@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('address', 255);
             $table->bigInteger('vat_number');
             $table->string('image');
+            $table->string("slug", 200)->unique();
             $table->foreignId("user_id")->constrained()->after("id")->onDelete('cascade');
             $table->timestamps();
         });

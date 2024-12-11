@@ -29,7 +29,7 @@ class RestaurantController extends Controller
             $restaurant->image = $restaurant->image ? url('storage/' . $restaurant->image) : null;
             return $restaurant;
         });
-
+dd($restaurants);
         return response()->json([
             "success" => true,
             "results" => $restaurants,

@@ -19,6 +19,7 @@ class Restaurant extends Model
         'vat_number',
         'image',
         'user_id',
+        'slug',
     ];
 
     public function dishes(){

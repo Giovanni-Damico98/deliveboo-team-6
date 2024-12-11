@@ -38,7 +38,6 @@ Route::get("/dishes", [DishController::class, "index"])->name("api.dishes.index"
 
 // Rotta per l'invio di e-mail
 Route::post('/send-email' , function (Request $request){
-    $restaurant = Restaurant::all();
     $details = $request->validate([
         'title' => 'required|string',
         'body' => 'required|string',
@@ -51,7 +50,7 @@ Route::post('/send-email' , function (Request $request){
     // Invia email al destinatario inserito nel form
     Mail::to($details['to'])->send(new EmailNotification([
         'title' => $details['details'],
-        'body' => "Il tuo ordine presso il {{$restaurant->name}} è stato confermato "
+        'body' => "Il tuo ordine è stato confermato "
     ]));
 
     //Invia email all'indirizzo del database

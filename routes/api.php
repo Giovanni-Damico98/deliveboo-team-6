@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Mail\EmailNotification;
 use App\Models\Category;
 use App\Models\Restaurant;
@@ -59,3 +60,7 @@ Route::post('/send-email' , function (Request $request){
         'body' => "Hai ricevuto un ordine"
     ]));
 });
+
+// Rotta per prendere i dati del ordine dal front
+
+Route::post('/orders' , [OrderController::class , 'store']);

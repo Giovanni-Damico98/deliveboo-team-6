@@ -28,7 +28,7 @@ class OrderController extends Controller
 
   public function store( Request $request){
 
-        Order::create([
+       $order = Order::create([
         'restaurant_id' => $request['restaurant_id'],
         'total_price'  => $request['total_price'],
         'firstname' => $request['firstname'],
@@ -37,6 +37,11 @@ class OrderController extends Controller
         'phone_number' => $request['phone_number'],
         'note' => $request['note'],
       ]);
+
+      return response()->json([
+        'message' => 'Ordine creato con successo!',
+        'order_id' => $order->id
+    ], 201);
 
   }
 

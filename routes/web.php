@@ -57,9 +57,6 @@ Route::prefix("/admin")->name("admin.")->group(function () {
     Route::post('/dishes/{dish}/toggle', [DishController::class, 'toggle'])->name('dishes.toggle');
 });
 
-// Rotta per prendere i dati del ordine dal front
-
-Route::post('/orders' , [OrderController::class , 'store']);
 
 
 // uri: -> Uniform Resource Identifier

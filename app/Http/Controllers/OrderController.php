@@ -38,6 +38,17 @@ class OrderController extends Controller
         'note' => $request['note'],
       ]);
 
+      $cart = $request->input('cart', []);
+
+      foreach ($cart as $item) {
+        $dishId = $item['id'];
+        $quantity = $item['quantity'];
+
+        for ($i = 0; $i < $quantity; $i++) {
+            $order->dishes()->attach($dishId);
+        }
+    }
+
       return response()->json([
         'message' => 'Ordine creato con successo!',
         'order_id' => $order->id

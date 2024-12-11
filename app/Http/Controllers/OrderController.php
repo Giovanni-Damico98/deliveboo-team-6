@@ -53,7 +53,6 @@ class OrderController extends Controller
         'message' => 'Ordine creato con successo!',
         'order_id' => $order->id
     ], 201);
-
   }
 
 }

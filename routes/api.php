@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,7 @@ Route::post('/send-email' , function (Request $request){
         'body' => "Hai ricevuto un ordine"
     ]));
 });
+
+// Rotta per prendere i dati del ordine dal front
+
+Route::post('/orders' , [OrderController::class , 'store']);

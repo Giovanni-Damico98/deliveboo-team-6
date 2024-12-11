@@ -10,17 +10,17 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     //
-    public function index(Order $order, Dish $dish){
+    public function index(Order $orders, Dish $dishes){
 
-        $order = Order::with('dish')->findOrFail($dish);
+        $orders = Order::with('dishes')->findOrFail($dishes);
 
-        if (isset($order['dishes'])){
-          $order->dishes()->sync($order['dishes']);
+        if (isset($orders['dishes'])){
+          $orders->dishes()->sync($orders['dishes']);
         } else{
-              $order->dishes()->detach();
+              $orders->dishes()->detach();
         }
 
-        return view('admin.orders.index');
+        return view('admin.orders.index' , compact('orders'));
 
     }
 

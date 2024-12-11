@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\OrderConfirmationController;
 use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Models\Category;
@@ -30,3 +31,5 @@ Route::get("/category" , [CategoryController::class , "index"])->name("api.categ
 
 // Rotta per l'esposizione dell'api per dishes
 Route::get("/dishes", [DishController::class, "index"])->name("api.dishes.index");
+
+Route::post('/send-order-confirmation', [OrderConfirmationController::class, 'sendOrderConfirmation']);

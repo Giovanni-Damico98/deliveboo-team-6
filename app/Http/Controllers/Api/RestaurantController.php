@@ -35,4 +35,26 @@ class RestaurantController extends Controller
             "results" => $restaurants,
         ]);
     }
+
+    public function show($slug)
+{
+    // Recupera il ristorante tramite slug, inclusi categorie e piatti
+    $restaurant = Restaurant::with(['categories', 'dishes'])->where('slug', $slug)->first();
+
+    // Controlla se il ristorante esiste
+    if (!$restaurant) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Restaurant not found',
+        ], 404);
+    }
+
+    // Aggiunge il percorso completo per l'immagine del ristorante
+    $restaurant->image = $restaurant->image ? url('storage/' . $restaurant->image) : null;
+
+    return response()->json([
+        'success' => true,
+        'results' => $restaurant,
+    ]);
+}
 }

@@ -14,11 +14,10 @@ class OrderController extends Controller
     public function index(Order $orders, Dish $dishes){
 
         $orders = Order::with('dishes')->get();
-
-        $orderCount = $orders->count();
         $restaurant = Restaurant::where('user_id', auth()->id())->first();
 
         $orders = Order::where('restaurant_id', $restaurant->id)->get();
+        $orderCount = $orders->count();
 
         return view('admin.orders.index' , compact('orders', 'orderCount'));
 
@@ -27,6 +26,9 @@ class OrderController extends Controller
     public function show (Order $orders, Dish $dishes) {
         $orders = Order::with('dishes')->get();
         return view ('admin.orders.show', compact('orders'));
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+
+        $orders = Order::where('restaurant_id', $restaurant->id)->get();
     }
 
 

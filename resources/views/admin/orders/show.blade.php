@@ -5,6 +5,7 @@
 <div class="container">
     @foreach ($orders as $order )
     <h1 class="text-center">Ordine {{$order->id}}</h1>
+    <p><a class="fs-4 text-center btn btn-sm btn-secondary" href="{{route('admin.orders.index')}}">Torna agli ordini</a></p>
 
     {{-- @if(session('message'))
         <div class="alert alert-success text-center">
@@ -16,14 +17,12 @@
         <thead>
             <tr>
                 <th>Ora</th>
-                {{-- <th>Ordine numero</th> --}}
                 <th>Nome cliente</th>
                 <th>Indirizzo</th>
                 <th>Numero di telefono</th>
                 <th>Note</th>
                 <th>Prezzo totale (€)</th>
                 <th>Piatti ordinati</th>
-                {{-- <th>Azioni</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -35,7 +34,6 @@
                 @endphp
                 <tr>
                     <td>{{$order->created_at}}</td>
-                    {{-- <td>{{ $order->id }}</td> --}}
                     <td>{{ $order->firstname }} {{ $order->lastname }}</td>
                     <td>{{ $order->address }}</td>
                     <td>{{ $order->phone_number }}</td>

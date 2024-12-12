@@ -11,11 +11,7 @@
         <a href="{{ route('admin.orders.completed') }}" class="btn btn-secondary">Vedi ordini completati</a>
     </div>
 
-    @if(session('message'))
-        <div class="alert alert-success text-center">
-            {{ session('message') }}
-        </div>
-    @endif
+    @if($orderCount > 0)
 
     <table class="table">
         <thead>
@@ -48,5 +44,10 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <h5 class="text-danger alert alert-danger text-center">
+        Non è ancora presente alcun ordine...
+    </h5>
+    @endif
 </div>
 @endsection

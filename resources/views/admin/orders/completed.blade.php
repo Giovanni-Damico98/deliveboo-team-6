@@ -15,6 +15,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Ora</th>
                     <th>Ordine numero</th>
                     <th>Nome cliente</th>
                 </tr>
@@ -22,6 +23,7 @@
             <tbody>
                 @foreach ($completedOrders as $order)
                     <tr>
+                        <td>{{$order->created_at}}</td>
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->firstname }} {{ $order->lastname }}</td>
                     </tr>

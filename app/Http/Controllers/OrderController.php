@@ -23,13 +23,14 @@ class OrderController extends Controller
         return view('admin.orders.index', compact('orders', 'orderCount'));
     }
 
-    public function show(Order $orders, Dish $dishes)
+    public function show(Order $order, Dish $dishes)
     {
-        $orders = Order::with('dishes')->get();
-        return view('admin.orders.show', compact('orders'));
-        $restaurant = Restaurant::where('user_id', auth()->id())->first();
 
-        $orders = Order::where('restaurant_id', $restaurant->id)->get();
+        // $order = Order::with('dishes')->get();
+        // $restaurant = Restaurant::where('user_id', auth()->id())->first();
+
+        // $orders = Order::where('restaurant_id', $restaurant->id)->get();
+        return view('admin.orders.show', compact('order', 'dishes'));
     }
 
 

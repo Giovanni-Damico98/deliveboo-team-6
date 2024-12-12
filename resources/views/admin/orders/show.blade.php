@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-    @foreach ($orders as $order )
     <h1 class="text-center">Ordine {{$order->id}}</h1>
     <p><a class="fs-4 text-center btn btn-sm btn-secondary" href="{{route('admin.orders.index')}}">Torna agli ordini</a></p>
 
@@ -15,6 +14,7 @@
 
     <table class="table">
         <thead>
+            {{-- @foreach ($orders as $order ) --}}
             <tr>
                 <th>Ora</th>
                 <th>Nome cliente</th>
@@ -51,7 +51,7 @@
                         </ul>
                     </td>
                 </tr>
-            @endforeach
+            {{-- @endforeach --}}
         </tbody>
     </table>
 </div>

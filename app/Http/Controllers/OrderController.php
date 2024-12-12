@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
+
 class OrderController extends Controller
 {
     //
@@ -14,8 +15,9 @@ class OrderController extends Controller
 
         $orders = Order::with('dishes')->get();
 
+        $orderCount = $orders->count();
 
-        return view('admin.orders.index' , compact('orders'));
+        return view('admin.orders.index' , compact('orders', 'orderCount'));
 
     }
 
@@ -51,4 +53,18 @@ class OrderController extends Controller
 
   }
 
+  public function completed() {
+    $completedOrders = Order::onlyTrashed()->with('dishes')->get();
+    $completedCount = $completedOrders->count();
+    return view('admin.orders.completed', compact('completedOrders', 'completedCount'));
+}
+
+  public function complete(Order $order)
+  {
+
+      $order->delete();
+
+      return redirect()->route('admin.orders.index')->with('status', 'Ordine completato con successo!');
+
+ }
 }

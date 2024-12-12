@@ -58,5 +58,7 @@ Route::prefix("/admin")->name("admin.")->group(function () {
 });
 
 Route::get("/admin/orders", [OrderController::class, "index"])->name("admin.orders.index");
+Route::get('/admin/orders/completed', [OrderController::class, 'completed'])->name('admin.orders.completed');
+Route::post('/admin/orders/{order}/complete', [OrderController::class, 'complete'])->name('admin.orders.complete');
 
 // uri: -> Uniform Resource Identifier

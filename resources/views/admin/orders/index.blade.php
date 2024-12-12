@@ -20,13 +20,15 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Ora</th>
                 <th>Ordine numero</th>
-                <th>Nome cliente</th>
-                <th>Indirizzo</th>
-                <th>Numero di telefono</th>
-                <th>Note</th>
-                <th>Prezzo totale (€)</th>
-                <th>Piatti ordinati</th>
+                {{-- <th>Nome cliente</th> --}}
+                {{-- <th>Indirizzo</th> --}}
+                {{-- <th>Numero di telefono</th> --}}
+                {{-- <th>Note</th> --}}
+                {{-- <th>Prezzo totale (€)</th> --}}
+                {{-- <th>Piatti ordinati</th> --}}
+                <th></th>
                 <th>Azioni</th>
             </tr>
         </thead>
@@ -39,13 +41,14 @@
                     }
                 @endphp
                 <tr>
+                    <td>{{$order->created_at}}</td>
                     <td>{{ $order->id }}</td>
-                    <td>{{ $order->firstname }} {{ $order->lastname }}</td>
+                    {{-- <td>{{ $order->firstname }} {{ $order->lastname }}</td>
                     <td>{{ $order->address }}</td>
-                    <td>{{ $order->phone_number }}</td>
-                    <td>{{ $order->note }}</td>
-                    <td>{{ number_format($order->total_price, 2, '.', '') }}</td>
-                    <td>
+                    <td>{{ $order->phone_number }}</td> --}}
+                    {{-- <td>{{ $order->note }}</td> --}}
+                    {{-- <td>{{ number_format($order->total_price, 2, '.', '') }}</td> --}}
+                    {{-- <td>
                         <ul>
                             @foreach ($dishesCount as $dishId => $dishesGroup)
                                 @php
@@ -55,7 +58,7 @@
                                 <li>{{ $dishName }} x {{ $quantity }}</li>
                             @endforeach
                         </ul>
-                    </td>
+                    </td> --}}
                     <td>
                         <form action="{{ route('admin.orders.complete', $order->id) }}" method="POST">
                             @csrf

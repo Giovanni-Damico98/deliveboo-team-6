@@ -24,6 +24,11 @@ class OrderController extends Controller
 
     }
 
+    public function show (Order $orders, Dish $dishes) {
+        $orders = Order::with('dishes')->get();
+        return view ('admin.orders.show', compact('orders'));
+    }
+
 
 
   public function store( Request $request){

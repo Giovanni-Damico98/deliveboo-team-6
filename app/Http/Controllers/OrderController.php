@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Dish;
 use App\Models\Order;
 use App\Models\Restaurant;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Collection;
+use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Http\Request;
 
 
@@ -100,5 +104,59 @@ class OrderController extends Controller
         $order->delete();
 
         return redirect()->route('admin.orders.index')->with('status', 'Ordine completato con successo!');
+    }
+
+    public function showChart()
+    {
+
+        $start = Carbon::parse(Order::min("created_at"));
+        $end = Carbon::now();
+        $period = CarbonPeriod::create($start, "1 day", $end);
+
+        $ordersPerDay = collect($period)->map(function ($date) {
+            $endDate = $date->copy()->endOfDay();
+
+            return [
+                "count" => Order::where("created_at", "<=", $endDate)->count(),
+                "day" => $endDate->format("Y-m-d")
+            ];
+        });
+
+        $data = $ordersPerDay->pluck("count")->toArray();
+        $labels = $ordersPerDay->pluck("day")->toArray();
+
+        $chart = Chartjs::build()
+            ->name("OrdersCharts")
+            ->type("line")
+            ->size(["width" => 400, "height" => 200])
+            ->labels($labels)
+            ->datasets([
+                [
+                    "label" => "Orders",
+                    "backgroundColor" => "rgba(38, 185, 154, 0.31)",
+                    "borderColor" => "rgba(38, 185, 154, 0.7)",
+                    "data" => $data
+                ]
+            ])
+            ->options([
+                'scales' => [
+                    'x' => [
+                        'type' => 'time',
+                        'time' => [
+                            'unit' => 'day'
+                        ],
+                        'min' => $start->format("Y-m-d"),
+                    ]
+                ],
+                'plugins' => [
+                    'title' => [
+                        'display' => true,
+                        'text' => 'Daily Orders'
+                    ]
+                ]
+            ]);
+
+        return view("admin.orders.chart", compact("chart"));
+
     }
 }

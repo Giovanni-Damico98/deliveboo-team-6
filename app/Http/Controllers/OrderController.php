@@ -110,11 +110,11 @@ class OrderController extends Controller
     {
 
         $start = Carbon::parse(Order::min("created_at"));
-        $end = Carbon::now();  //->add(1, 'hour');
+        $end = Carbon::now()->add(1, 'hour');
         $period = CarbonPeriod::create($start, "1 month", $end);
 
         $ordersPerDay = collect($period)->map(function ($date) {
-            $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
+            $endDate = $date->copy()->endOfMonth();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
                 "count" => Order::where("created_at", "<=", $endDate)->count(),
@@ -127,7 +127,7 @@ class OrderController extends Controller
 
         $chart = Chartjs::build()
             ->name("OrdersCharts")
-            ->type("line")
+            ->type("bar")
             ->size(["width" => 400, "height" => 200])
             ->labels($labels)
             ->datasets([
@@ -143,9 +143,9 @@ class OrderController extends Controller
                     'x' => [
                         'type' => 'time',
                         'time' => [
-                            'unit' => 'day'
+                            'unit' => 'month'
                         ],
-                        'min' => $start->format("Y-m-d"),
+                        'min' => $start->format("2024-01-01"),
                     ]
                 ],
                 'plugins' => [

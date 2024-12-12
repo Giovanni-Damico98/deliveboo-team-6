@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        $request = $request->validate(
+        $request->validate(
             [
                 'restaurant_id' => 'required|integer|exists:restaurants,id',
                 'total_price' => 'required|numeric|min:0',
@@ -58,7 +58,7 @@ class OrderController extends Controller
             'note' => $request['note'] ?? null,
         ]);
 
-        $cart = $request['cart'];
+        $cart = $request->input('cart', []);
 
         foreach ($cart as $item) {
             $dishId = $item['id'];

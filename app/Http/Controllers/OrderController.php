@@ -16,6 +16,9 @@ class OrderController extends Controller
         $orders = Order::with('dishes')->get();
 
         $orderCount = $orders->count();
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+
+        $orders = Dish::where('restaurant_id', $restaurant->id)->get();
 
         return view('admin.orders.index' , compact('orders', 'orderCount'));
 

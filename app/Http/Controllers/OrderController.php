@@ -110,11 +110,11 @@ class OrderController extends Controller
     {
 
         $start = Carbon::parse(Order::min("created_at"));
-        $end = Carbon::now();
-        $period = CarbonPeriod::create($start, "1 day", $end);
+        $end = Carbon::now();  //->add(1, 'hour');
+        $period = CarbonPeriod::create($start, "1 month", $end);
 
         $ordersPerDay = collect($period)->map(function ($date) {
-            $endDate = $date->copy()->endOfDay();
+            $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
                 "count" => Order::where("created_at", "<=", $endDate)->count(),

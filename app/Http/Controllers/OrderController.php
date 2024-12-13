@@ -132,7 +132,7 @@ class OrderController extends Controller
             $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
-                "summ" => Order::onlyTrashed()->where('restaurant_id' , $restaurant)->where("total_price", "<=", $endDate)->sum('total_price'),
+                "summ" => Order::onlyTrashed()->where('restaurant_id' , $restaurant->id)->where("total_price", "<=", $endDate)->sum('total_price'),
                 "month" => $endDate->format("Y-m-d")
             ];
         });

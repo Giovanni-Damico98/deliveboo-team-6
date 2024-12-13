@@ -63,7 +63,3 @@ Route::post('/send-email' , function (Request $request){
 // Rotta per prendere i dati del ordine dal front
 
 Route::post('/orders' , [OrderController::class , 'store']);
-
-// Rotta per prendere i dati del ordine dal front
-
-Route::post('/orders' , [OrderController::class , 'store']);

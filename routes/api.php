@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OrderController;
 use App\Mail\EmailNotification;
 use App\Models\Category;
@@ -40,3 +41,8 @@ Route::get("/dishes", [DishController::class, "index"])->name("api.dishes.index"
 // Rotta per prendere i dati del ordine dal front
 
 Route::post('/orders' , [OrderController::class , 'store']);
+
+// Rotte per l'invio delle e-mail
+
+// Route::post('/orders', [EmailController::class, 'sendConfirmationEmail']);
+

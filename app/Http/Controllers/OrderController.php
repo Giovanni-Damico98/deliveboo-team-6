@@ -117,7 +117,7 @@ class OrderController extends Controller
             $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
-                "count" => Order::where("created_at", "<=", $endDate)->count(),
+                "count" => Order::onlyTrashed()->where("created_at", "<=", $endDate)->count(),
                 "month" => $endDate->format("Y-m-d")
             ];
         });
@@ -130,7 +130,7 @@ class OrderController extends Controller
             $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
-                "summ" => Order::where("total_price", "<=", $endDate)->sum('total_price'),
+                "summ" => Order::onlyTrashed()->where("total_price", "<=", $endDate)->sum('total_price'),
                 "month" => $endDate->format("Y-m-d")
             ];
         });

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Ordini al Mese</h1>
+    <h1>Ordini al Mese/Anno</h1>
     <div style="width:75%;">
         <x-chartjs-component :chart="$chart" />
     </div>

@@ -109,15 +109,17 @@ class OrderController extends Controller
     public function showChart()
     {
 
-        $start = Carbon::parse(Order::min("created_at"));
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+
+        $start = Carbon::parse(Order::where('restaurant_id' , $restaurant->id)->min("created_at"));
         $end = Carbon::now();  //->add(1, 'hour');
         $period = CarbonPeriod::create($start, "1 month", $end);
 
-        $ordersPerMonth = collect($period)->map(function ($date) {
+        $ordersPerMonth = collect($period)->map(function ($date) use ($restaurant) {
             $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
-                "count" => Order::onlyTrashed()->where("created_at", "<=", $endDate)->count(),
+                "count" => Order::onlyTrashed()->where("created_at", "<=", $endDate)->where('restaurant_id' , $restaurant->id)->count(),
                 "month" => $endDate->format("Y-m-d")
             ];
         });
@@ -126,11 +128,11 @@ class OrderController extends Controller
         $labels = $ordersPerMonth->pluck("month")->toArray();
 
 
-        $sellingPerMonth = collect($period)->map(function ($date) {
+        $sellingPerMonth = collect($period)->map(function ($date) use ($restaurant) {
             $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
-                "summ" => Order::onlyTrashed()->where("total_price", "<=", $endDate)->sum('total_price'),
+                "summ" => Order::onlyTrashed()->where('restaurant_id' , $restaurant)->where("total_price", "<=", $endDate)->sum('total_price'),
                 "month" => $endDate->format("Y-m-d")
             ];
         });

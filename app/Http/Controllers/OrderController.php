@@ -114,7 +114,7 @@ class OrderController extends Controller
         $period = CarbonPeriod::create($start, "1 month", $end);
 
         $ordersPerMonth = collect($period)->map(function ($date) {
-            $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
+            $endDate = $date->copy()->endOfMonth();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
                 "count" => Order::onlyTrashed()->where("created_at", "<=", $endDate)->count(),
@@ -127,7 +127,7 @@ class OrderController extends Controller
 
 
         $sellingPerMonth = collect($period)->map(function ($date) {
-            $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
+            $endDate = $date->copy()->endOfMonth();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
                 "summ" => Order::onlyTrashed()->where("total_price", "<=", $endDate)->sum('total_price'),

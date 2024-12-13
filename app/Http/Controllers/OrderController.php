@@ -113,39 +113,58 @@ class OrderController extends Controller
         $end = Carbon::now();  //->add(1, 'hour');
         $period = CarbonPeriod::create($start, "1 month", $end);
 
-        $ordersPerDay = collect($period)->map(function ($date) {
+        $ordersPerMonth = collect($period)->map(function ($date) {
             $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
 
             return [
                 "count" => Order::where("created_at", "<=", $endDate)->count(),
-                "day" => $endDate->format("Y-m-d")
+                "month" => $endDate->format("Y-m-d")
             ];
         });
 
-        $data = $ordersPerDay->pluck("count")->toArray();
-        $labels = $ordersPerDay->pluck("day")->toArray();
+        $count = $ordersPerMonth->pluck("count")->toArray();
+        $labels = $ordersPerMonth->pluck("month")->toArray();
+
+
+        $sellingPerMonth = collect($period)->map(function ($date) {
+            $endDate = $date->copy()->endOfHour();   //endOfHour tot ordini a fine ora, endOfDay tot ordini a fine giornata ecc.
+
+            return [
+                "summ" => Order::where("total_price", "<=", $endDate)->sum('total_price'),
+                "month" => $endDate->format("Y-m-d")
+            ];
+        });
+
+        $summ = $sellingPerMonth->pluck("summ")->toArray();
+        $labels = $sellingPerMonth->pluck("month")->toArray();
 
         $chart = Chartjs::build()
             ->name("OrdersCharts")
-            ->type("line")
+            ->type("bar")
             ->size(["width" => 400, "height" => 200])
             ->labels($labels)
             ->datasets([
                 [
-                    "label" => "Orders",
+                    "label" => "Ordini al mese",
                     "backgroundColor" => "rgba(38, 185, 154, 0.31)",
                     "borderColor" => "rgba(38, 185, 154, 0.7)",
-                    "data" => $data
-                ]
+                    "data" => $count
+                ],
+                [
+                    "label" => "Vendite al mese $",
+                    "backgroundColor" => "rgba(185, 38, 173, 0.31)",
+                    "borderColor" => "rgba(48, 38, 185, 0.7)",
+                    "data" => $summ
+                ],
             ])
             ->options([
                 'scales' => [
                     'x' => [
                         'type' => 'time',
                         'time' => [
-                            'unit' => 'day'
+                            'unit' => 'month'
                         ],
-                        'min' => $start->format("Y-m-d"),
+                        'min' => $start->format("2024-01-01"),
                     ]
                 ],
                 'plugins' => [

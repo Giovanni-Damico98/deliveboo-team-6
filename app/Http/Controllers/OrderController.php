@@ -93,8 +93,13 @@ class OrderController extends Controller
 
     public function completed()
     {
-        $completedOrders = Order::onlyTrashed()->with('dishes')->get();
+        $restaurant = Restaurant::where('user_id', auth()->id())->first();
+
+        $completedOrders = Order::onlyTrashed()
+            ->where('restaurant_id', $restaurant->id)->with('dishes')->get();
+
         $completedCount = $completedOrders->count();
+
         return view('admin.orders.completed', compact('completedOrders', 'completedCount'));
     }
 

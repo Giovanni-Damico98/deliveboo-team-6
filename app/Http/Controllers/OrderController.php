@@ -163,8 +163,7 @@ class OrderController extends Controller
 
         $chart = Chartjs::build()
             ->name("OrdersCharts")
-            ->type("bar")
-            ->size(["width" => 400, "height" => 200])
+            ->type("bar")       
             ->labels($labels)
             ->datasets([
                 [

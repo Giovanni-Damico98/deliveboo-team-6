@@ -43,8 +43,8 @@
                         <div class="col-md-6">
                             <label for="visible" class="form-label fw-bold">Visibilità</label>
                             <select class="form-select" name="visible" id="visible" required>
-                                <option value="1" {{ old('visible') == 1 ? 'selected' : '' }}>Visibile</option>
-                                <option value="0" {{ old('visible') == 0 ? 'selected' : '' }}>Non Visibile</option>
+                                <option value="1" {{ old('visible', $dish->visible) == 1 ? 'selected' : '' }}>Disponibile</option>
+                                <option value="0" {{ old('visible', $dish->visible) == 0 ? 'selected' : '' }}>Non Disponibile</option>
                             </select>
                         </div>
                     </div>
@@ -55,9 +55,9 @@
                     </div>
 
                     @if($dish->image)
-                        <div class="mb-4">
-                            <label class="form-label fw-bold">Immagine Attuale</label>
-                            <img src="{{ asset('storage/' . $dish->image) }}" alt="Immagine del Piatto" class="img-fluid">
+                        <div class="mb-4 text-center">
+                            <label class="form-label fw-bold">Immagine Attuale</label> <br>
+                            <img src="{{ asset('storage/' . $dish->image) }}" alt="Immagine del Piatto" class="img-thumbnail w-50">
                         </div>
                     @endif
 

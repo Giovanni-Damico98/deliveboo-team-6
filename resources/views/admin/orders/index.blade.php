@@ -31,7 +31,7 @@
                     }
                 @endphp
                 <tr>
-                    <td>{{$order->created_at}}</td>
+                    <td>{{$order->formatted_created_at}}</td>
                     <td>{{ $order->id }}</td>
                     <td><a class="btn btn-sm btn-success" href="{{route('admin.orders.show', $order->id)}}">Mostra</a></td>
                     <td>

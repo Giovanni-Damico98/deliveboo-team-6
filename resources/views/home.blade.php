@@ -12,7 +12,7 @@
             <div class="col text-white">
                 {{-- Titolo --}}
                 <div class=" text-center">
-                    <h1 class="home-title">Benvenuto!</h1>
+                    <h1 class="home-title fw-bold">Benvenuto!</h1>
                 </div>
                 <div class="d-flex">
 
@@ -24,14 +24,14 @@
                         @endif
                         {{-- Messaggio centrale homepage --}}
 
-                        <div id="body-text">
+                         <div id="body-text">
                             <p class="mt-4 paragraph">
                                 Effettua il login per gestire la sezione relativa al tuo
                                 ristorante <br>
                                 oppure registrati
                                 per inserire la tua attività
                             </p>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>

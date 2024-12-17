@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,13 @@ Route::prefix("/admin")->name("admin.")->group(function () {
     Route::post('/dishes/{dish}/toggle', [DishController::class, 'toggle'])->name('dishes.toggle');
 });
 
+// ROTTE PER GLI ORDINI
 Route::get("/admin/orders", [OrderController::class, "index"])->name("admin.orders.index");
+Route::get('/admin/orders/completed', [OrderController::class, 'completed'])->name('admin.orders.completed');
+Route::get('/admin/orders/{order}', [OrderController::class, 'show'])->name('admin.orders.show');
+Route::post('/admin/orders/{order}/complete', [OrderController::class, 'complete'])->name('admin.orders.complete');
+
+// ROTTA PER LE STATISTICHE DEGLI ORDINI
+Route::get('/admin/charts', [OrderController::class, 'showChart'])->name('admin.charts.index');
 
 // uri: -> Uniform Resource Identifier

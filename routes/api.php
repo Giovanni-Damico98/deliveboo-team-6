@@ -36,33 +36,7 @@ Route::get("/category" , [CategoryController::class , "index"])->name("api.categ
 // Rotta per l'esposizione dell'api per dishes
 Route::get("/dishes", [DishController::class, "index"])->name("api.dishes.index");
 
-// Rotta per l'invio di e-mail
-Route::post('/send-email' , function (Request $request){
-    $details = $request->validate([
-        'title' => 'required|string',
-        'body' => 'required|string',
-        'to' => 'required|email',
-    ]);
 
-    // Recupero l'email dal database in modo dinamico
-    $databaseEmail = User::where('id')->value('email');
-
-    // Invia email al destinatario inserito nel form
-    Mail::to($details['to'])->send(new EmailNotification([
-        'title' => $details['details'],
-        'body' => "Il tuo ordine è stato confermato "
-    ]));
-
-    //Invia email all'indirizzo del database
-    Mail::to($databaseEmail)->send(new EmailNotification([
-        'title' => $details['title'],
-        'body' => "Hai ricevuto un ordine"
-    ]));
-});
-
-// Rotta per prendere i dati del ordine dal front
-
-Route::post('/orders' , [OrderController::class , 'store']);
 
 // Rotta per prendere i dati del ordine dal front
 

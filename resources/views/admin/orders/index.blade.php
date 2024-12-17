@@ -16,7 +16,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Ora</th>
+                <th>Data</th>
                 <th>Ordine numero</th>
                 <th>Mostra Ordine</th>
                 <th>Azioni</th>

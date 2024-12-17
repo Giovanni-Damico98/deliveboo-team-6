@@ -10,6 +10,8 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Collection;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Http\Request;
+use App\Events\OrderCreated;
+use Illuminate\Support\Facades\Log;
 
 
 class OrderController extends Controller
@@ -84,6 +86,11 @@ class OrderController extends Controller
                 $order->dishes()->attach($dishId);
             }
         }
+
+        Log::info('Evento OrderCreated emesso', ['order_id' => $order->id]);
+
+           // Trigger dell'evento
+    event(new OrderCreated($order, $request->email));
 
         return response()->json([
             'message' => 'Ordine creato con successo!',

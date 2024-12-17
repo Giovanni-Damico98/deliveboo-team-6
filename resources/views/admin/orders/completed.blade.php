@@ -9,6 +9,7 @@
         <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">Torna agli ordini attivi</a>
     </div>
 
+
     @if($completedCount == 0)
         <p class="text-center text-secondary">Nessun ordine completato.</p>
     @else
